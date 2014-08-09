@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+  resources :profiles
+
+  resources :galleries do
+    resources :photos
+  end
+
+
+
   devise_for :users
+
+  root to: redirect("/galleries")
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

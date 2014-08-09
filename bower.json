@@ -1,0 +1,16 @@
+{
+  "name": "prism",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap-sass": "latest",
+    "font-awesome": "latest",
+    "jquery": "latest",
+    "twitter-text": "latest",
+    "momentjs": "latest",
+    "livestampjs": "latest",
+    "bootstrap-markdown": "latest",
+    "to-markdown": "latest",
+    "markdown": "latest",
+    "dropzone": "latest"
+  }
+}

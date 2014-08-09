@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1><%= @gallery.title %></h1>
+</div>
+
+
+<div class="row">
+  <% @photos.each do |photo| %>
+    <div class="col-xs-6 col-md-3">
+      <a href="#" class="thumbnail">
+        <img src="<%= photo.image %>">
+      </a>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+<%#= link_to 'New Photo', new_photo_path %>
