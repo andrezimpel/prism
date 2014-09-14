@@ -14,9 +14,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <%= navigation_li_link "Galleries", galleries_path %>
-        <%= navigation_li_link "Orders", "#" %>
-        <%= navigation_li_link "Clients", profiles_path %>
+        <%= navigation_li_link "Galleries", backend_galleries_path %>
+        <%#= navigation_li_link "Orders", "#" %>
+        <%#= navigation_li_link "Clients", profiles_path %>
+        <%= navigation_li_link "Blog", backend_posts_path %>
       </ul>
 
       <form class="navbar-form navbar-left hidden" role="search">

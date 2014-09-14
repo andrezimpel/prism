@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723220837) do
+ActiveRecord::Schema.define(version: 20140913174433) do
 
   create_table "galleries", force: true do |t|
     t.string   "title"
@@ -34,6 +34,23 @@ ActiveRecord::Schema.define(version: 20140723220837) do
     t.integer  "gallery_id"
   end
 
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "account_id"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "gallery_id"
+    t.text     "teaser"
+    t.datetime "published_at"
+  end
+
+  add_index "posts", ["account_id"], name: "index_posts_on_account_id", using: :btree
+  add_index "posts", ["permalink"], name: "index_posts_on_permalink", using: :btree
+  add_index "posts", ["published_at"], name: "index_posts_on_published_at", using: :btree
+  add_index "posts", ["title"], name: "index_posts_on_title", using: :btree
+
   create_table "profiles", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -41,6 +58,24 @@ ActiveRecord::Schema.define(version: 20140723220837) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

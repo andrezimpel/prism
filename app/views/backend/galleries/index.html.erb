@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to 'New Gallery', new_backend_gallery_path, class: "pull-right btn btn-primary" %>
+  <h1>Galleries</h1>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Photos</th>
+      <th>Client</th>
+      <th>updated</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @galleries.each do |gallery| %>
+      <tr>
+        <td><b><%= link_to gallery.title, backend_gallery_photos_path(gallery) %></b></td>
+        <td><%= gallery.photos.count %></td>
+        <td><%= gallery.client.fullname if gallery.client %></td>
+        <td><span data-livestamp="<%= gallery.updated_at.to_i %>"></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+<%#= link_to 'New Photo', new_photo_path %>

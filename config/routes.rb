@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  # blog routes
+  get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
+
+
+  resources :posts, path: "blog"
+
   resources :profiles
 
   resources :galleries do
@@ -6,6 +13,12 @@ Rails.application.routes.draw do
   end
 
 
+  namespace :backend do |backend|
+    resources :posts, path: "blog", controller: "posts"
+    resources :galleries do
+      resources :photos
+    end
+  end
 
   devise_for :users
 

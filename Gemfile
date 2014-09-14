@@ -53,6 +53,9 @@ gem 'ancestry'
 gem 'mechanize'
 gem 'reverse_markdown'
 gem 'kaminari'
+gem 'redactor-rails'
+gem 'acts-as-taggable-on'
+gem 'jquery-fileupload-rails'
 
 group :development do
   gem 'capistrano', '~> 3.0.0'

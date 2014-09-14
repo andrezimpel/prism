@@ -1,0 +1,18 @@
+<%= f.error_notification %>
+
+<div class="form-inputs">
+  <%= f.hidden_field :account_id, value: 1 %>
+
+  <%= f.input :title %>
+  <%= f.input :teaser %>
+  <%= f.input :body %>
+  <%= f.association :gallery, include_blank: false %>
+  <%= f.input :tag_list, label: "Tags" %>
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit, "Save" %>
+  <%= link_to 'Cancel', backend_posts_path, class: "btn btn-danger btn-link" %>
+</div>
+
+<div id="post_tags" class="hidden" data-tags="<%= ActsAsTaggableOn::Tag.all.map(&:name) %>"></div>

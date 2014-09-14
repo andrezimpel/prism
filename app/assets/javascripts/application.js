@@ -30,3 +30,12 @@
 
 //= require momentjs/moment.js
 //= require livestampjs/livestamp.js
+
+//= require redactor
+
+//= require typeahead.js/dist/typeahead.bundle.js
+//= require handlebars/handlebars.js
+//= require bootstrap-tagsinput/dist/bootstrap-tagsinput.js
+
+
+//= require posts

@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Blog</h1>
+</div>
+
+
+
+<ul class="media-list">
+  <% @posts.each do |post| %>
+    <li class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to post.title, frontend_blog_post_path(day: post.day, month: post.month, year: post.year, title: post.permalink) %>
+          <small><%= post.created_at.strftime("%Y-%m-%d") %></small>
+        </h4>
+        <p><%= truncate(strip_tags(post.body), length: 140) %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>

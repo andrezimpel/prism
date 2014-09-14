@@ -11,6 +11,9 @@
     "bootstrap-markdown": "latest",
     "to-markdown": "latest",
     "markdown": "latest",
-    "dropzone": "latest"
+    "dropzone": "latest",
+    "bootstrap-tagsinput": "latest",
+    "typeahead.js": "latest",
+    "handlebars": "latest"
   }
 }

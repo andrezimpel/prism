@@ -52,6 +52,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.0.1)
+      rails (>= 3, < 5)
     acts_as_tree (2.0.0)
       activerecord (>= 3.0.0)
     ancestry (2.1.0)
@@ -181,6 +183,10 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    redactor-rails (0.4.5)
+      devise
+      mime-types
+      orm_adapter
     redcarpet (3.1.2)
     reverse_markdown (0.5.1)
       nokogiri
@@ -232,6 +238,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   acts_as_tree
   ancestry
   better_errors
@@ -254,6 +261,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.1.1)
   rails-timeago
+  redactor-rails
   redcarpet
   reverse_markdown
   sass-rails (~> 4.0.3)
