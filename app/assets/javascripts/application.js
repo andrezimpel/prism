@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+// require turbolinks
 // require jquery.turbolinks
-// require jturbolinks
 //= require jquery_ujs
 
 // include bootstrap
@@ -43,6 +43,3 @@
 
 //= require posts
 //= require photos
-
-
-//= require turbolinks

@@ -18,7 +18,7 @@
 <div class="jumbotron text-center hidden">
   Drag images into the window to upload them
 
-  <%= simple_form_for(@photo, url: backend_gallery_photos_path(@gallery) ,html: { multipart: true}) do |f|  %>
+  <%= simple_form_for(@photo, url: backend_gallery_photos_path(@gallery) ,html: { remote: true, multipart: true}) do |f|  %>
     <%= f.hidden_field :gallery_id, value: @gallery.id %>
 
     <div class="fallback">

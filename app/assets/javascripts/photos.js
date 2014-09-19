@@ -30,6 +30,7 @@ $(document).ready(function(){
 				$this.animate({
           height: "0px"
         }, 700, function(){
+					console.log("done");
 					$this.remove();
 				});
 			});
