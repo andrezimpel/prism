@@ -1,4 +1,4 @@
-<%= simple_form_for(@gallery) do |f| %>
+<%= simple_form_for(@gallery, url: backend_galleries_path) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

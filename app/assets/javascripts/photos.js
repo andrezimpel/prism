@@ -1,67 +1,38 @@
 $(document).ready(function(){
 	$('#new_photo').fileupload({
-		dataType: 'json',
-		send: function (e, data) {
-			console.log(e);
-			console.log(data);
-      $.each(data.files, function (index, file) {
-          $('<p/>').text(file.name).appendTo($('#new_photo'));
-      });
-    },
-		fail: function (e, data) {
-			console.log(e);
-			console.log(data);
+		dataType: "script",
+		add: function(e, data){
+			types = /(\.|\/)(gif|jpe?g|png)$/i;
+			file = data.files[0];
+			timestamp = Date.now();
+			if (types.test(file.type) || types.test(file.name)) {
+				data.context = $(tmpl("template-upload", file, timestamp));
+				$('#photo-row').before(data.context);
+				data.timestamp = timestamp;
+				data.submit();
+			} else {
+				alert("#{file.name} is not a gif, jpeg, or png image file");
+			}
 		},
-		progressall: function (e, data) {
-      var progress = parseInt(data.loaded / data.total * 100, 10);
-      $('#progress .bar').css(
-          'width',
-          progress + '%'
-      );
-    }
+		progress: function(e, data) {
+			if (data.context) {
+					progress = parseInt(data.loaded / data.total * 100, 10);
+					data.context.find('.progress-bar').css('width', progress + '%');
+			}
+		},
+		done: function (e, data) {
+			timestamp = data.timestamp;
+			$elem = $("[data-timestamp='" + timestamp + "']");
+
+			$elem.addClass('animated fadeOutDown');
+			$elem.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+				$this = $(this);
+				$this.animate({
+          height: "0px"
+        }, 700, function(){
+					$this.remove();
+				});
+			});
+		}
 	});
 });
-
-
-
-
-// $(document).ready(function(){
-// 	// disable auto discover
-// 	Dropzone.autoDiscover = false;
-//
-// 	// grap our upload form by its id
-// 	$("#new_photo").dropzone({
-// 		// restrict image size to a maximum 1MB
-// 		maxFilesize: 10,
-// 		acceptedFiles: ".jpg,.png",
-// 		thumbnailWidth: 200,
-// 		thumbnailHeight: 200,
-// 		// changed the passed param to one accepted by
-// 		// our rails app
-// 		paramName: "photo[image]",
-// 		// show remove links on each image upload
-// 		addRemoveLinks: false,
-// 		// if the upload was successful
-// 		success: function(file, response){
-// 			// find the remove button link of the uploaded file and give it an id
-// 			// based of the fileID response from the server
-// 			$(file.previewTemplate).find('.dz-remove').attr('id', response.id);
-// 			// add the dz-success class (the green tick sign)
-// 			$(file.previewElement).addClass("dz-success");
-// 		},
-// 		//when the remove button is clicked
-// 		removedfile: function(file){
-// 			// grap the id of the uploaded file we set earlier
-// 			var id = $(file.previewTemplate).find('.dz-remove').attr('id');
-//
-// 			// make a DELETE ajax request to delete the file
-// 			$.ajax({
-// 				type: 'DELETE',
-// 				url: '/backend/photos/' + id,
-// 				success: function(data){
-// 					console.log(data.message);
-// 				}
-// 			});
-// 		}
-// 	});
-// });

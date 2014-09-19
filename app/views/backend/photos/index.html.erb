@@ -1,54 +1,48 @@
 <%= render "backend/galleries/header", gallery: @gallery %>
 
-
-
 <% unless @photos.empty? %>
-  <div class="row">
+  <div id="photo-row" class="photo-row row">
     <% @photos.each do |photo| %>
-      <div class="col-xs-6 col-md-3">
-        <a href="<%= url_for backend_gallery_photo_path(@gallery, photo) %>" class="thumbnail">
-          <img src="<%= photo.image(:medium_s) %>">
-        </a>
-      </div>
+      <%= render photo, photo: photo %>
     <% end %>
   </div>
 
-  <%= paginate @photos %>
+  <%#= paginate @photos %>
 <% else %>
-  <p class="lead">There are currently no Photos. Go ahead and add some!</p>
+  <div id="photo-row" class="photo-row row"></div>
+  <p id="no-photos-placeholder" class="lead">There are currently no Photos. Go ahead and add some!</p>
 <% end %>
-
-
-
-
-
-
-
-
-<%= render "backend/galleries/sidebar" %>
-
-
-
-
-
-
 
 
 
 <div class="jumbotron text-center hidden">
   Drag images into the window to upload them
 
-  <%= simple_form_for(@photo, :url => backend_gallery_photos_path, html: { multipart: true, class: "dropzone"}) do |f|  %>
+  <%= simple_form_for(@photo, url: backend_gallery_photos_path(@gallery) ,html: { multipart: true}) do |f|  %>
     <%= f.hidden_field :gallery_id, value: @gallery.id %>
 
     <div class="fallback">
-      <%= f.file_field :image %><br>
+      <%= f.file_field :image, multiple: true, name: "photo[image]" %><br>
       <%= f.submit "Upload" %>
     </div>
   <% end %>
-
-
-  <div id="progress">
-    <div class="bar" style="background:red; height: 18px; width: 0%;"></div>
-  </div>
 </div>
+
+
+<% content_for "sidebar" do %>
+  <%= link_to 'Edit Gallery', edit_backend_gallery_path(@gallery), class: "btn btn-primary" %>
+  <hr>
+  <div class="sidebar-note">
+    <b id="photo-counter"><%= pluralize(@gallery.photos.count, "Photo")%></b>
+  </div>
+  <hr>
+  <%= link_to 'Delete Gallery', backend_gallery_path(@gallery), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
+<% end %>
+
+
+<script id="template-upload" type="text/x-tmpl">
+  <div class="upload" data-timestamp="{%=timestamp%}">
+    {%=o.name%}
+    <div class="progress"><div class="progress-bar progress-bar-striped active" style="width: 0%"></div></div>
+  </div>
+</script>

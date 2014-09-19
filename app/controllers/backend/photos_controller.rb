@@ -5,7 +5,7 @@ class Backend::PhotosController < ApplicationController
   # GET /photos.json
   def index
     @gallery = Gallery.find(params[:gallery_id])
-    @photos = @gallery.photos.page(params[:page]).per(24)
+    @photos = @gallery.photos #.page(params[:page]).per(24)
     @photo = Photo.new
   end
 
@@ -27,17 +27,20 @@ class Backend::PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    @photo = Photo.new(photo_params)
-
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :create, message: "success", status: 200 }
-      else
-        format.html { render :new }
-        format.json { render error: @photo.errors.full_messages.join(','), status: 400}
-      end
-    end
+    @photo = Photo.create(photo_params)
+    # @photo = Photo.new(photo_params)
+    #
+    # respond_to do |format|
+    #   if @photo.save
+    #     format.html { redirect_to backend_gallery_photo_path(@photo.gallery, @photo), notice: 'Photo was successfully created.' }
+    #     format.json { render :create, message: "success", status: 200 }
+    #     format.js { render :create, message: "success", status: 200 }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render error: @photo.errors.full_messages.join(','), status: 400 }
+    #     format.js { render error: @photo.errors.full_messages.join(','), status: 400 }
+    #   end
+    # end
   end
 
   # PATCH/PUT /photos/1

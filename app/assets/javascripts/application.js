@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+// require jquery.turbolinks
+// require jturbolinks
 //= require jquery_ujs
-// require turbolinks
 
 // include bootstrap
 //= require bootstrap/js/transition
@@ -37,11 +38,11 @@
 //= require handlebars/handlebars.js
 //= require bootstrap-tagsinput/dist/bootstrap-tagsinput.js
 
-// require dropzone/downloads/dropzone.js
-
-//= require jquery-file-upload/js/vendor/jquery.ui.widget.js
-//= require jquery-file-upload/js/jquery.iframe-transport.js
-//= require jquery-file-upload/js/jquery.fileupload.js
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 
 //= require posts
 //= require photos
+
+
+//= require turbolinks

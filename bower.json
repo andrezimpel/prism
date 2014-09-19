@@ -15,6 +15,7 @@
     "bootstrap-tagsinput": "latest",
     "typeahead.js": "latest",
     "handlebars": "latest",
-    "dropzone": "latest"
+    "dropzone": "latest",
+    "animate.css": "latest"
   }
 }
