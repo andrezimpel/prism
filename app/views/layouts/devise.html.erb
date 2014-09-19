@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Priism</title>
+    <%= stylesheet_link_tag    "devise/design", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body  class="devise">
+
+    <div class="wrapper">
+      <div class="page">
+        <div class="content">
+          <div class="page-header">
+            <%= yield "headline" %>
+          </div>
+          <%= render 'layouts/alerts' %>
+          <%= yield %>
+
+          <footer>
+            <div class="footer-nav clearfix">
+              <div class="pull-left">
+                <% if defined? resource_name %>
+                  <%= render "users/shared/links" %>
+                <% else %>
+                  <%= link_to "Sign in", signin_path %>
+                <% end %>
+              </div>
+
+              <div class="pull-right">
+                <a href="http://www.Priism.com" target="_blank">Priism</a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

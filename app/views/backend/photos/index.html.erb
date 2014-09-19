@@ -16,7 +16,7 @@
 <div class="jumbotron text-center hidden">
   Drag images into the window to upload them
 
-  <%= simple_form_for(@photo, url: backend_gallery_photos_path(@gallery) ,html: { remote: true, multipart: true}) do |f|  %>
+  <%= simple_form_for(@photo ,html: { remote: true, multipart: true}) do |f|  %>
     <%= f.hidden_field :gallery_id, value: @gallery.id %>
 
     <div class="fallback">
@@ -28,13 +28,13 @@
 
 
 <% content_for "sidebar" do %>
-  <%= link_to 'Edit Gallery', edit_backend_gallery_path(@gallery), class: "btn btn-primary" %>
+  <%= link_to 'Edit Gallery', edit_gallery_path(@gallery), class: "btn btn-primary" %>
   <hr>
   <div class="sidebar-note">
     <b id="photo-counter"><%= pluralize(@gallery.photos.count, "Photo")%></b>
   </div>
   <hr>
-  <%= link_to 'Delete Gallery', backend_gallery_path(@gallery), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
+  <%= link_to 'Delete Gallery', gallery_path(@gallery), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
 <% end %>
 
 

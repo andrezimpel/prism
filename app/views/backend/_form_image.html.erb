@@ -1,0 +1,11 @@
+<%= f.label input %>
+<div class="media">
+  <% unless image.to_s.empty? %>
+    <div class="pull-left">
+      <img class="media-object" src="<%= image %>" width="34">
+    </div>
+  <% end %>
+  <div class="media-body">
+    <%= f.input input, label: false %>
+  </div>
+</div>

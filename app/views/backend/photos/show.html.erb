@@ -7,7 +7,7 @@
 
 
 <% content_for "sidebar" do %>
-  <%= link_to 'Edit Photo', edit_backend_gallery_photo_path(@gallery, @photo), class: "btn btn-primary" %>
+  <%= link_to 'Edit Photo', edit_gallery_photo_path(@gallery, @photo), class: "btn btn-primary" %>
   <hr>
   <div class="sidebar-note">
     <b>File Size</b><br>
@@ -18,5 +18,5 @@
     <%= @photo.image_content_type %>
   </div>
   <hr>
-  <%= link_to 'Delete Photo', backend_gallery_photo_path(@gallery, @photo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
+  <%= link_to 'Delete Photo', gallery_photo_path(@gallery, @photo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
 <% end %>

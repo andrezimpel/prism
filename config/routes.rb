@@ -1,32 +1,57 @@
 Rails.application.routes.draw do
 
   # blog routes
-  get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
+  # get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
 
 
-  resources :posts, path: "blog"
+  # resources :posts, path: "blog"
 
-  resources :profiles
-  resources :photos
+  # resources :profiles
+  # resources :photos
 
-  resources :galleries do
-    resources :photos
-  end
+  # resources :galleries do
+  #   resources :photos
+  # end
 
 
-  namespace :backend do |backend|
-    resources :posts, path: "blog", controller: "posts"
-    resources :galleries do
-      resources :photos
+  # backend
+  scope ":account_id" do
+    resources :accounts, controller: "backend/accounts"
+
+    resources :posts, path: "blog", controller: "backend/posts"
+
+    resources :galleries, controller: "backend/galleries" do
+      resources :photos, controller: "backend/photos"
+    end
+    resources :photos, controller: "backend/photos"
+
+    # invitation
+    devise_scope :user do
+      get "team/invite", to: "users/invitations#new", :as => "new_account_user_invitation"
+      post "team/invite", to: "users/invitations#create"
     end
 
     # update user settings
     get "/update-settings/:resource/:key/:value" => 'users#update_settings', as: "update_user_settings"
   end
+  get "/:account_id/galleries" => "galleries#index", as: "prism_root"
 
-  devise_for :users
+  resources :accounts
 
-  root to: redirect("/backend/galleries")
+  devise_for :users,
+              #:controllers => { :invitations => 'users/invitations', :registrations => "users/registrations", :sessions => "users/sessions" },
+              :path => "",
+              :path_names => {:sign_in => 'login', :sign_up => "signup", :sign_out => 'logout'}
+  as :user do
+    get "/login" => "devise/sessions#new", as: "user_login"
+    get "/signin" => redirect("login")
+    delete "/logout" => "devise/sessions#destroy"
+  end
+
+  get "/:account_id" => redirect("/")
+
+  root 'galleries#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,82 @@
+@import "_base";
+
+@import "backend/users";
+
+// styling
+body {
+  // background:#f1f1f1;
+  padding-top: 90px;
+
+  -webkit-font-smoothing: antialiased
+}
+
+.wrapper {
+  @extend .container;
+}
+.page {
+  @include make-row;
+}
+.content {
+  @include make-sm-column(6);
+  @include make-sm-column-push(3);
+
+  @include make-md-column(4);
+  @include make-md-column-push(4);
+}
+
+h1, h2, h3 {
+  @extend .text-center;
+  // margin-bottom: $space;
+}
+
+
+.btn {
+  @extend .btn-block;
+}
+
+
+
+// forms
+.devise {
+
+  .page-header {
+    border-color: $grey-light;
+    margin: $space 0;
+
+    h1 {
+      font-weight: 300;
+      margin-top: 0;
+
+      small {
+        color: $grey;
+      }
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 ($space - 15) 0;
+    }
+  }
+
+  .form-group,
+  .checkbox {
+    margin: 0 0 $space-medium 0;
+  }
+
+  input[type="password"],
+  input[type="email"],
+  input[type="text"] {
+    box-shadow: none;
+    height: auto;
+    padding: 10px 16px;
+    min-height: 34px;
+  }
+
+  .form-control-static {
+    padding: 1px 16px;
+  }
+
+  small {
+    color: $grey;
+  }
+
+}

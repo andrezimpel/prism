@@ -6,4 +6,5 @@ class Gallery < ActiveRecord::Base
   has_many :photos
   belongs_to :client, :class_name => 'User'
   belongs_to :post
+  belongs_to :account
 end

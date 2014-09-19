@@ -16,7 +16,7 @@
   <tbody>
     <% @galleries.each do |gallery| %>
       <tr>
-        <td><b><%= link_to gallery.title, backend_gallery_photos_path(gallery) %></b></td>
+        <td><b><%= link_to gallery.title, gallery_photos_path(gallery) %></b></td>
         <td><%= gallery.photos.count %></td>
         <td><%= gallery.client.fullname if gallery.client %></td>
         <td><span data-livestamp="<%= gallery.updated_at.to_i %>"></span></td>
@@ -27,5 +27,5 @@
 
 
 <% content_for "sidebar" do %>
-  <%= link_to 'Add Gallery', new_backend_gallery_path, class: "btn btn-primary" %>
+  <%= link_to 'Add Gallery', new_gallery_path, class: "btn btn-primary" %>
 <% end %>

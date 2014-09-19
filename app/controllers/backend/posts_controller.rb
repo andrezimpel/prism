@@ -1,15 +1,16 @@
-class Backend::PostsController < ApplicationController
+class Backend::PostsController < Backend::BackendController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = @current_account.posts.page(params[:page]).per(10)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    redirect_to posts_path
   end
 
   # GET /posts/new
@@ -28,7 +29,7 @@ class Backend::PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to backend_post_path(@post), notice: 'Post was successfully created.' }
+        format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class Backend::PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to backend_post_path(@post), notice: 'Post was successfully updated.' }
+        format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }

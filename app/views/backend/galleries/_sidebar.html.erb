@@ -1,5 +1,5 @@
 <% content_for "sidebar" do %>
-  <%= link_to 'Edit Gallery', edit_backend_gallery_path(@gallery), class: "btn btn-primary" %>
+  <%= link_to 'Edit Gallery', edit_gallery_path(@gallery), class: "btn btn-primary" %>
   <hr>
-  <%= link_to 'Delete Gallery', backend_gallery_path(@gallery), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
+  <%= link_to 'Delete Gallery', gallery_path(@gallery), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
 <% end %>

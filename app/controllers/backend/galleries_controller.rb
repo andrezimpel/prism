@@ -1,16 +1,16 @@
-class Backend::GalleriesController < ApplicationController
+class Backend::GalleriesController < Backend::BackendController
   before_action :set_gallery, only: [:show, :edit, :update, :destroy]
 
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = Gallery.all
+    @galleries = @current_account.galleries
   end
 
   # GET /galleries/1
   # GET /galleries/1.json
   def show
-    redirect_to backend_gallery_photos_path(@gallery)
+    redirect_to gallery_photos_path(@gallery)
   end
 
   # GET /galleries/new
@@ -29,7 +29,7 @@ class Backend::GalleriesController < ApplicationController
 
     respond_to do |format|
       if @gallery.save
-        format.html { redirect_to backend_gallery_path(@gallery), notice: 'Gallery was successfully created.' }
+        format.html { redirect_to gallery_path(@gallery), notice: 'Gallery was successfully created.' }
         format.json { render :show, status: :created, location: @gallery }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Backend::GalleriesController < ApplicationController
   def update
     respond_to do |format|
       if @gallery.update(gallery_params)
-        format.html { redirect_to backend_gallery_path(@gallery), notice: 'Gallery was successfully updated.' }
+        format.html { redirect_to gallery_path(@gallery), notice: 'Gallery was successfully updated.' }
         format.json { render :show, status: :ok, location: @gallery }
       else
         format.html { render :edit }

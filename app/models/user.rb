@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_one :profile
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
 
@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     s.key :photos, :defaults => { :view => 'grid' }
   end
 
+  # associations
+  belongs_to :account
 
   # get user "Name"
   def fullname

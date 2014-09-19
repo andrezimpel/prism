@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
 
   # association
   belongs_to :gallery
+  belongs_to :account
 
   # generate permalink
   before_save :generate_perma

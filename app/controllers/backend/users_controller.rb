@@ -1,4 +1,4 @@
-class Backend::UsersController < ApplicationController
+class Backend::UsersController < Backend::BackendController
   def update_settings
     user = current_user
     user.settings(params[:resource].to_sym).update_attributes! params[:key].to_sym => params[:value]
