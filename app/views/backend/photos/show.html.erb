@@ -1,9 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%= render "backend/galleries/header", gallery: @gallery %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @photo.title %>
-</p>
+<h3><%= @photo.fullname %></h3>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+<img src="<%= @photo.image %>" class="img-responsive">
+
+
+
+<% content_for "sidebar" do %>
+  <%= link_to 'Edit Photo', edit_backend_gallery_photo_path(@gallery, @photo), class: "btn btn-primary" %>
+  <hr>
+  <div class="sidebar-note">
+    <b>File Size</b><br>
+    <%= number_to_human_size(@photo.image_file_size) %>
+  </div>
+  <div class="sidebar-note">
+    <b>Image Type</b><br>
+    <%= @photo.image_content_type %>
+  </div>
+  <hr>
+  <%= link_to 'Delete Photo', backend_gallery_photo_path(@gallery, @photo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
+<% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :posts, path: "blog"
 
   resources :profiles
+  resources :photos
 
   resources :galleries do
     resources :photos

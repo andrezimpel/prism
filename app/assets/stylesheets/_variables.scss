@@ -10,7 +10,7 @@ $base-radius: 2px;
 $brand-primary: #569ef0;
 $brand-info: $brand-primary;
 $alert-info-bg: lighten($brand-primary, 30%);
-$alert-info-border: $brand-primary;
+$alert-info-border: lighten($brand-primary, 10%);
 $alert-info-text: $brand-primary;
 $grid-gutter-width: 40px;
 $btn-default-border: $grey-light;
@@ -31,3 +31,6 @@ $space-medium: $space / 2;
 $space-small: $space / 4;
 $space-mini: $space / 8;
 $space-tiny: $space / 16;
+
+
+$nav-link-padding: $space-mini $space-small;

@@ -1,0 +1,14 @@
+.form-actions {
+  background: $grey-super-light;
+  border-top: 1px solid $grey-light;
+  margin-top: $space-medium;
+  padding: $space-medium;
+
+  input[type="submit"] {
+    @extend .btn-primary;
+  }
+}
+
+label + .media {
+  margin-top: 0;
+}

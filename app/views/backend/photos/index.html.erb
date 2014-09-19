@@ -1,23 +1,54 @@
-<div class="page-header">
-  <h1><%= @gallery.title %></h1>
-</div>
+<%= render "backend/galleries/header", gallery: @gallery %>
 
 
-<div class="row">
-  <% @photos.each do |photo| %>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
-        <img src="<%= photo.image %>">
-      </a>
+
+<% unless @photos.empty? %>
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="col-xs-6 col-md-3">
+        <a href="<%= url_for backend_gallery_photo_path(@gallery, photo) %>" class="thumbnail">
+          <img src="<%= photo.image(:medium_s) %>">
+        </a>
+      </div>
+    <% end %>
+  </div>
+
+  <%= paginate @photos %>
+<% else %>
+  <p class="lead">There are currently no Photos. Go ahead and add some!</p>
+<% end %>
+
+
+
+
+
+
+
+
+<%= render "backend/galleries/sidebar" %>
+
+
+
+
+
+
+
+
+
+<div class="jumbotron text-center hidden">
+  Drag images into the window to upload them
+
+  <%= simple_form_for(@photo, :url => backend_gallery_photos_path, html: { multipart: true, class: "dropzone"}) do |f|  %>
+    <%= f.hidden_field :gallery_id, value: @gallery.id %>
+
+    <div class="fallback">
+      <%= f.file_field :image %><br>
+      <%= f.submit "Upload" %>
     </div>
   <% end %>
+
+
+  <div id="progress">
+    <div class="bar" style="background:red; height: 18px; width: 0%;"></div>
+  </div>
 </div>
-
-
-<div class="jumbotron text-center">
-  Drag images into the window to upload them
-</div>
-
-
-
-<%#= link_to 'New Photo', new_photo_path %>

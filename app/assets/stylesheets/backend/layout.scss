@@ -1,0 +1,68 @@
+body {
+  // background:#f1f1f1;
+  padding-top: 90px;
+
+  -webkit-font-smoothing: antialiased
+}
+
+.wrapper {
+  @extend .container;
+}
+.page {
+  @include make-row;
+}
+.sidebar {
+  @include make-sm-column(2);
+}
+.content {
+  @include make-sm-column(10);
+}
+
+.page.faded {
+  opacity: 0.35;
+}
+
+
+
+.page-header {
+  border-color: $grey-light;
+  margin-top: 0;
+
+  h1, h2, h3, h4 {
+    font-weight: 300;
+    margin-top: 0;
+
+    small {
+      color: $grey;
+    }
+  }
+}
+
+
+
+
+
+
+
+.note-area {
+  font-size: 85%;
+  margin: $space-medium 0;
+}
+
+// pagination
+.pagination-wrapper {
+  text-align: center;
+
+  .pagination {
+    margin: $space 0 ($space - 5) 0;
+  }
+}
+
+
+
+// alerts
+.alert {
+  .close {
+    line-height: 17px !important;
+  }
+}

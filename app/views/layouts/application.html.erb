@@ -2,21 +2,26 @@
 <html>
   <head>
     <title>PRISM</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'backend/application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
 
     <%= render 'layouts/header' if current_user %>
 
-    <div class="container">
-      <%= render 'layouts/alerts' %>
-
-      <%= yield %>
+    <div class="wrapper">
+      <div id="page" class="page">
+        <div class="sidebar">
+          <%= yield "sidebar" %>
+        </div>
+        <div class="content">
+          <%= render 'layouts/alerts' %>
+          <%= yield %>
+        </div>
+      </div>
     </div>
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <br>
-    <br><br><br>
+    <%= render 'layouts/shared/footer' %>
   </body>
 </html>

@@ -20,5 +20,11 @@
   <%= @post.permalink %>
 </p>
 
+
+<% @post.gallery.photos.limit(5).each do |photo| %>
+  <img src="<%= photo.image %>" width="200">
+<% end %>
+<br>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

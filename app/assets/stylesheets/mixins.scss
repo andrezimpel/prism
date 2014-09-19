@@ -1,0 +1,37 @@
+// overrides
+.well {
+  background: $grey-super-light;
+  border-color: $grey-light;
+  box-shadow: none;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Actual modal
+.modal-content {
+  box-shadow: 0 1px 3px rgba($black, 0.09);
+}
+
+// Pills
+// -------------------------
+.nav-pills {
+  > li {
+
+    // Links rendered as pills
+    > a {
+      background: $grey-super-light;
+      color: $text-color;
+    }
+  }
+}
+
+
+// mixins
+@mixin truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,5 +1,4 @@
 <div class="page-header">
-  <%= link_to 'New Post', new_backend_post_path, class: "btn btn-primary pull-right" %>
   <h1>Blog</h1>
 </div>
 
@@ -32,3 +31,8 @@
 </ul>
 
 <%= paginate @posts %>
+
+
+<% content_for "sidebar" do %>
+<%= link_to 'New Post', new_backend_post_path, class: "btn btn-primary" %>
+<% end %>

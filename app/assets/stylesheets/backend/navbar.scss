@@ -1,0 +1,73 @@
+.navbar-satiisfy {
+  background: #fefefe;
+  border-bottom: 1px $grey-light solid;
+  box-shadow: 0 1px 3px rgba($black, 0.02);
+  color: $black;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  a {
+    color: $black;
+  }
+
+  .icon-bar {
+    background: $text-color;
+  }
+
+  .navbar-form {
+    display: block;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+
+
+    .form-control {
+      display: inline-block;
+      width: auto;
+    }
+
+    button {
+      // padding-top: 7px;
+    }
+  }
+
+  .navbar-user {
+    margin-right: -$space-medium;
+  }
+
+  .navbar-brand {
+    position: relative;
+    z-index: 3;
+  }
+
+  .nav {
+    position: relative;
+    z-index: 3;
+
+    > li {
+      border-bottom: 1px $grey-light solid;
+      margin-right: 1px;
+      margin-bottom: -1px;
+
+      &.active,
+      &.open,
+      &:hover,
+      &:focus {
+        background: white;
+        border-bottom-color: $brand-primary;
+
+        > a {
+          background: white;
+          color: $brand-primary;
+        }
+      }
+
+      > a {
+        border-radius: 2px;
+        color: $black;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}

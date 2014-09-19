@@ -10,6 +10,7 @@ class Backend::GalleriesController < ApplicationController
   # GET /galleries/1
   # GET /galleries/1.json
   def show
+    redirect_to backend_gallery_photos_path(@gallery)
   end
 
   # GET /galleries/new

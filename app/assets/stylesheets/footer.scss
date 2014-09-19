@@ -1,0 +1,20 @@
+footer {
+  font-size: 12px;
+  margin-top: $space-medium;
+
+  .footer-nav {
+    border-top: 1px solid $grey-light;
+    padding: $space-mini 0;
+    margin: $space-small 0;
+
+    > div {
+      margin: 0 (-$space-medium);
+    }
+
+    a {
+      color: $grey;
+      display: inline-block;
+      padding: $space-mini $space-medium;
+    }
+  }
+}
