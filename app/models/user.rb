@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
+  # settings
+  has_settings do |s|
+    s.key :galleries, :defaults => { :view => 'listing' }
+    s.key :photos, :defaults => { :view => 'grid' }
+  end
+
+
   # get user "Name"
   def fullname
     if self.profile

@@ -19,11 +19,14 @@ Rails.application.routes.draw do
     resources :galleries do
       resources :photos
     end
+
+    # update user settings
+    get "/update-settings/:resource/:key/:value" => 'users#update_settings', as: "update_user_settings"
   end
 
   devise_for :users
 
-  root to: redirect("/galleries")
+  root to: redirect("/backend/galleries")
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

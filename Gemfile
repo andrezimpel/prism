@@ -57,6 +57,7 @@ gem 'redactor-rails'
 gem 'acts-as-taggable-on'
 gem 'jquery-fileupload-rails'
 gem 'jquery-turbolinks'
+gem 'ledermann-rails-settings'
 
 group :development do
   gem 'capistrano', '~> 3.0.0'

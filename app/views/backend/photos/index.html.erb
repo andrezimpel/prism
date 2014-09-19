@@ -2,9 +2,7 @@
 
 <% unless @photos.empty? %>
   <div id="photo-row" class="photo-row row">
-    <% @photos.each do |photo| %>
-      <%= render photo, photo: photo %>
-    <% end %>
+    <%= render "/backend/photos/#{current_user.settings(:photos).view}", photos: @photos %>
   </div>
 
   <%#= paginate @photos %>

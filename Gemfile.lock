@@ -131,6 +131,8 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    ledermann-rails-settings (2.3.0)
+      activerecord (>= 3.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -263,6 +265,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
+  ledermann-rails-settings
   mechanize
   mysql2
   paperclip!
