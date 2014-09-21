@@ -1,4 +1,5 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
+
 
   # blog routes
   # get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
   # backend
   scope ":account_id" do
     resources :accounts, controller: "backend/accounts"
+    resources :clients, controller: "backend/clients"
+    # invite a client
+    get "/clients/:id/invite" => 'backend/clients#invite', controller: "backend/clients", as: "invite_client"
 
     resources :posts, path: "blog", controller: "backend/posts"
 
@@ -38,6 +42,7 @@ Rails.application.routes.draw do
 
   resources :accounts
 
+  devise_for :clients
   devise_for :users,
               #:controllers => { :invitations => 'users/invitations', :registrations => "users/registrations", :sessions => "users/sessions" },
               :path => "",

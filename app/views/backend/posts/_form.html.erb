@@ -6,7 +6,7 @@
   <%= f.input :title %>
   <%= f.input :teaser %>
   <%= f.input :body %>
-  <%= f.association :gallery, include_blank: false %>
+  <%= f.association :gallery, include_blank: false, collection: @current_account.galleries.has_no_client %>
   <%= f.input :tag_list, label: "Tags" %>
 </div>
 
