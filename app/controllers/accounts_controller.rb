@@ -7,6 +7,10 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
     @account.users.build
+
+    if current_user
+      redirect_to prism_root_path(current_user.account_id)
+    end
   end
 
   # POST /accounts

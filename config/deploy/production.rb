@@ -1,6 +1,6 @@
 set :stage, :production
 
-set :deploy_to, '/var/www/prism'
+set :deploy_to, '/var/www/html'
 
 set :rvm_custom_path, '/usr/local/rvm/'
 

@@ -51,4 +51,4 @@ production:
   <<: *default
   database: prism_production
   username: prism
-  password: <%= ENV['PRISM_DATABASE_PASSWORD'] %>
+  password: notifymilk
