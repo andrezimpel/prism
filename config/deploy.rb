@@ -59,7 +59,7 @@ set :repo_url, 'git@github.com:andrezimpel/prism.git'
 # set :deploy_to, '/var/www/my_app'
 # set :scm, :git
 
-set :rvm_ruby_version, "2.0.0-p353#{fetch(:application)}"
+set :rvm_ruby_version, "1.9.3-p448#{fetch(:application)}"
 set :rvm_type, :user
 
 set :format, :pretty
