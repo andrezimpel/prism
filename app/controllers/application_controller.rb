@@ -28,8 +28,10 @@ class ApplicationController < ActionController::Base
   # current account
   before_filter :set_current_account
   def set_current_account
-    # get account by scoped :account_id
+    # get account by subdomain | frontend
+    raise "s"
 
+    # get account by scoped :account_id | backend
     if params[:account_id]
       @current_account = Account.find(params[:account_id])
       return @current_account
