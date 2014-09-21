@@ -31,4 +31,4 @@ Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
 # If you are using rvm add these lines:
 require 'capistrano/rvm'
 set :rvm_type, :user
-set :rvm_ruby_version, '1.9.3-353'
+set :rvm_ruby_version, '2.0.0-p353'
