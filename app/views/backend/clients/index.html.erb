@@ -9,6 +9,7 @@
       <th>Lastname</th>
       <th>Email</th>
       <th>UUID</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,13 @@
         <td><%= client.lastname %></td>
         <td><%= client.email %></td>
         <td><%= client.prism_uuid %></td>
+        <td>
+          <% if client.status == "uninvited" %>
+            <%= link_to "Invite", invite_client_path(client) %>
+          <% else %>
+            <span class="label label-info"><%= client.status %></span>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', client %></td>
         <td><%= link_to 'Edit', edit_client_path(client) %></td>
         <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>

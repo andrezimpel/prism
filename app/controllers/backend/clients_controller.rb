@@ -1,5 +1,5 @@
 class Backend::ClientsController < Backend::BackendController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :update, :destroy, :invite]
 
   # GET /clients
   # GET /clients.json
@@ -59,6 +59,19 @@ class Backend::ClientsController < Backend::BackendController
       format.html { redirect_to clients_path, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # custom
+
+  def invite
+    # redirect if there is no email
+    if @client.email == nil
+      redirect_to clients_path, alert: 'Client has no email.'
+    end
+
+    @client.invite!
+
+    redirect_to clients_path, notice: 'Client was successfully invited.'
   end
 
   private

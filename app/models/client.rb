@@ -1,14 +1,14 @@
 class Client < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
-  devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:prism_uuid]
+  devise :invitable, :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable, :invitable, :authentication_keys => [:prism_uuid]
 
   # associations
   belongs_to :account
   has_many :galleries
 
-  attr_accessor :prism_uuid
+  #attr_accessor :prism_uuid
 
 
   # we don't need a password
@@ -28,11 +28,36 @@ class Client < ActiveRecord::Base
     self.prism_uuid = SecureRandom.hex(10)
   end
 
+
+
   # client names
   def fullname
     return firstname + " " + lastname
   end
   def title
     return self.fullname
+  end
+
+
+
+  # inviteable stat
+  def status
+    return 'invited' if self.invitation_token
+    return 'active' if self.last_sign_in_at
+    return 'uninvited'
+  end
+
+  def is_active?
+    if self.status  == "active"
+      return true
+    end
+    return false
+  end
+
+  def is_invited?
+    if self.status  == "invited"
+      return true
+    end
+    return false
   end
 end

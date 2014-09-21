@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
 
 
   # blog routes
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   scope ":account_id" do
     resources :accounts, controller: "backend/accounts"
     resources :clients, controller: "backend/clients"
+    # invite a client
+    get "/clients/:id/invite" => 'backend/clients#invite', controller: "backend/clients", as: "invite_client"
 
     resources :posts, path: "blog", controller: "backend/posts"
 
