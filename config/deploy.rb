@@ -94,20 +94,20 @@ namespace :deploy do
     end
   end
 
-  desc 'stop solr'
-  task :stop do
-    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:stop"
-  end
-
-  desc 'start solr'
-  task :start do
-    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:start"
-  end
-
-  desc 'reindex solr'
-  task :reindex do
-    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:reindex"
-  end
+  # desc 'stop solr'
+  # task :stop do
+  #   run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:stop"
+  # end
+  #
+  # desc 'start solr'
+  # task :start do
+  #   run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:start"
+  # end
+  #
+  # desc 'reindex solr'
+  # task :reindex do
+  #   run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:reindex"
+  # end
 
   after :finishing, 'deploy:cleanup'
 end
