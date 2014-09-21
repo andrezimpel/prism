@@ -32,7 +32,7 @@ class Client < ActiveRecord::Base
 
   # client names
   def fullname
-    return firstname + " " + lastname
+    return firstname + " " + lastname if self.lastname != nil && self.lastname != nil
   end
   def title
     return self.fullname

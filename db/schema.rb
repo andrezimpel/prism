@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921112327) do
+ActiveRecord::Schema.define(version: 20140921173045) do
 
   create_table "accounts", force: true do |t|
     t.string   "title"
@@ -146,6 +146,8 @@ ActiveRecord::Schema.define(version: 20140921112327) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
+    t.string   "firstname"
+    t.string   "lastname"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree

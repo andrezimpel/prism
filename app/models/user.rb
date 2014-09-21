@@ -18,12 +18,10 @@ class User < ActiveRecord::Base
 
   # get user "Name"
   def fullname
-    if self.profile
-      if self.profile.firstname != nil && self.profile.lastname != nil
-        return self.profile.firstname + " " + self.profile.lastname
-      end
-      return self.email
+    if self.firstname != nil && self.lastname != nil
+      return self.firstname + " " + self.lastname
     end
+    return self.email
     return self.email
   end
 end

@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
+    <%= f.association :gallery, include_blank: false, collection: @current_account.galleries %>
     <%= render "backend/form_image", f: f, input: :image, image: @photo.image(:medium_s) %>
   </div>
 

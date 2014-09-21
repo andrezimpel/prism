@@ -1,4 +1,8 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
+
+    # signup
+    get "/signup" => "accounts#new", as: "signup"
+    get "/accounts/new" => redirect("/signup")
 
 
   # blog routes
@@ -55,7 +59,7 @@
 
   get "/:account_id" => redirect("/")
 
-  root 'galleries#index'
+  root to: redirect("/signup")
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
