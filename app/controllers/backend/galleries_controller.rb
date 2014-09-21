@@ -70,6 +70,6 @@ class Backend::GalleriesController < Backend::BackendController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gallery_params
-      params.require(:gallery).permit(:title, :account_id)
+      params.require(:gallery).permit(:title, :account_id, :client_id)
     end
 end

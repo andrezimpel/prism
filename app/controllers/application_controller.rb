@@ -13,24 +13,10 @@ class ApplicationController < ActionController::Base
       "application"
     end
   end
-  
+
 
   # store user login info in cookie for fast-login  & redirect after login
   def after_sign_in_path_for(resource)
-
-    # gerate fast login id
-    # fast_login_id = SecureRandom.uuid
-    #
-    # # set fast login id cookie
-    # cookies["Priism_fast_login_id"] = {
-    #   :value => fast_login_id,
-    #   :expires => 2.days.from_now,
-    #   :domain => :all
-    # }
-    #
-    # # save fast login id in user
-    # current_user.update_attribute :fast_login_id, fast_login_id if current_user.fast_login_id.empty?
-
     prism_root_path(current_user.account)
   end
 
