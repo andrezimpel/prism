@@ -63,7 +63,7 @@ group :development do
   gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rbenv', github: "capistrano/rbenv"
+  gem 'capistrano-rvm', github: "capistrano/rvm"
 
   gem "pry-rails"
   gem "better_errors"
