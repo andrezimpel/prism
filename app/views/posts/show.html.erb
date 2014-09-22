@@ -21,10 +21,7 @@
 </p>
 
 
-<% @post.gallery.photos.limit(5).each do |photo| %>
-  <img src="<%= photo.image %>" width="200">
+<% @post.gallery.photos.limit(4).each do |photo| %>
+  <img src="<%= photo.image(:medium_s) %>" width="24%">
 <% end %>
 <br>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

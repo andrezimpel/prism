@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if devise_controller?# && controller_name != "invitations"
       "devise"
+    elsif @frontend
+      "frontend"
     else
       "application"
     end
@@ -28,8 +30,15 @@ class ApplicationController < ActionController::Base
   # current account
   before_filter :set_current_account
   def set_current_account
+    @frontend = false
+
     # get account by subdomain | frontend
-    raise "s"
+    if Account.where(subdomain: request.subdomain).empty? === false
+      @current_account = Account.where(subdomain: request.subdomain).first
+      @frontend = true
+      return @current_account
+    end
+
 
     # get account by scoped :account_id | backend
     if params[:account_id]
@@ -45,15 +54,6 @@ class ApplicationController < ActionController::Base
     # dont' raise the exception if we are in the devise stuff
     if !devise_controller?
       raise ActionController::RoutingError.new('Account not found.')
-    end
-  end
-
-  # default url options
-  def default_url_options(options={})
-    if @current_account.present?
-      { :account_id => @current_account.id }
-    else
-      { :account_id => nil }
     end
   end
 end

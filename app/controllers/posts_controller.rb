@@ -5,11 +5,13 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @title = "Blog"
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @title = @post.title
   end
 
   private

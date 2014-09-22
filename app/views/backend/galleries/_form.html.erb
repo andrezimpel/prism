@@ -5,6 +5,12 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.association :client, collection: @current_account.clients %>
+    <%= f.label :portfolio %>
+    <div class="checkbox">
+      <label>
+        <%= f.input :portfolio, :as => :boolean, label: false %> Show
+      </label>
+    </div>
   </div>
 
   <div class="form-actions">

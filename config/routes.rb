@@ -1,19 +1,8 @@
 Rails.application.routes.draw do
 
-    # signup
-    get "/signup" => "accounts#new", as: "signup"
-    get "/accounts/new" => redirect("/signup")
-
-
-  # account frontend
-  scope :constraints => lambda { |request| !Subdomain.match(request) } do
-    resources :galleries do
-      resources :photos
-    end
-    # blog routes
-    get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
-  end
-
+  # signup
+  get "/signup" => "accounts#new", as: "signup"
+  get "/accounts/new" => redirect("/signup")
 
   # backend
   scope ":account_id" do
@@ -41,6 +30,32 @@ Rails.application.routes.draw do
   get "/:account_id/galleries" => "galleries#index", as: "prism_root"
 
 
+
+  # --------------------------------------
+
+
+
+  # account frontend
+  scope :constraints => lambda { |request| !Subdomain.match(request) } do
+    # portfolio
+    resources :galleries, path: "portfolio", as: "portfolio" do
+      resources :photos
+    end
+
+    # blog routes
+    resources :posts, path: "blog", as: "blog"
+    get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
+
+    # root
+    get "/" => redirect("/portfolio"), as: "frontend_root"
+  end
+
+
+
+  # --------------------------------------
+
+
+
   # users, clients & accounts
   resources :accounts
   devise_for :clients
@@ -56,17 +71,23 @@ Rails.application.routes.draw do
 
   get "/:account_id" => redirect("/")
 
-  root 'galleries#index'
+  # root 'galleries#index'
+  root to: redirect("/signup")
 end
 
 # ----------------------------------------
 
 # helper
-  root to: redirect("/signup")
-
 class Subdomain
+
   def self.match(r)
     r.subdomain == "www" || r.subdomain == ""
+    # account = Account.where(subdomain: r.subdomain)
+    # if !account.empty?
+    #   return true
+    # end
+    #
+    # return false
   end
 
   def self.not_match(r)

@@ -10,7 +10,7 @@
         <th>Title</th>
         <th>Photos</th>
         <th>Client</th>
-        <th>updated</th>
+        <th>Portfolio</th>
       </tr>
     </thead>
 
@@ -20,7 +20,10 @@
           <td><b><%= link_to gallery.title, gallery_photos_path(gallery) %></b></td>
           <td><%= gallery.photos.count %></td>
           <td><%= gallery.client.fullname if gallery.client %></td>
-          <td><span data-livestamp="<%= gallery.updated_at.to_i %>"></span></td>
+          <!-- <td><span data-livestamp="<%= gallery.updated_at.to_i %>"></span></td> -->
+          <td>
+            <%= gallery.portfolio ? "Yes" : "No" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -34,4 +37,6 @@
 
 <% content_for "sidebar" do %>
   <%= link_to 'Add Gallery', new_gallery_path, class: "btn btn-primary" %>
+  <hr>
+  <%= link_to 'Show Website', frontend_root_url(subdomain: @current_account.subdomain, params: { account_id: nil }), class: "btn btn-default", target: "_blank" %>
 <% end %>
