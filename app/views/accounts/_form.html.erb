@@ -1,0 +1,18 @@
+<%= simple_form_for(@account) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+  </div>
+
+  <div class="form-actions">
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group">
+        <%= f.button :submit %>
+      </div>
+      <div class="btn-group">
+        <%= link_to "Cancel", request.referer, class: "btn btn-link" %>
+      </div>
+    </div>
+  </div>
+<% end %>

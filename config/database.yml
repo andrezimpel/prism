@@ -47,8 +47,10 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
-  <<: *default
+  adapter: mysql2
+  encoding: utf8
   database: prism_production
   username: prism
-  password: <%= ENV['PRISM_DATABASE_PASSWORD'] %>
+  password: notifymilk

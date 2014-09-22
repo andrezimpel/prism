@@ -1,4 +1,8 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
+
+    # signup
+    get "/signup" => "accounts#new", as: "signup"
+    get "/accounts/new" => redirect("/signup")
 
 
   # account frontend
@@ -58,6 +62,7 @@ end
 # ----------------------------------------
 
 # helper
+  root to: redirect("/signup")
 
 class Subdomain
   def self.match(r)
