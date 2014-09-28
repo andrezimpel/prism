@@ -1,16 +1,17 @@
-class GalleriesController < ApplicationController
-  before_action :set_gallery, only: [:show, :edit, :update, :destroy]
+class Clients::GalleriesController < Clients::ClientsController
+  before_action :set_gallery, only: [:show]
 
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = @current_account.galleries.portfolio
-    @title = "Portfolio"
+    @galleries = current_client.galleries
+    @title = "My Galleries"
   end
 
   # GET /galleries/1
   # GET /galleries/1.json
   def show
+    @title = @gallery.title
   end
 
   private

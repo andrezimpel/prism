@@ -1,0 +1,31 @@
+.users-grid {
+  @include make-row;
+}
+
+.users-grid-item {
+  @include make-sm-column(4);
+  @extend .media;
+
+  margin: 0 0 $space-medium 0;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  a {
+    display: block;
+    position: relative;
+
+    img {
+      position: relative;
+      width: 75px;
+      z-index: 1;
+    }
+  }
+}
+
+
+.avatar {
+  border-radius: 5%;
+  max-width: 100%;
+}

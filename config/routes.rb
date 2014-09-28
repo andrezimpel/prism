@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
 
-    # signup
-    get "/signup" => "accounts#new", as: "signup"
-    get "/accounts/new" => redirect("/signup")
+  # signup
+  get "/signup" => "accounts#new", as: "signup"
+  get "/accounts/new" => redirect("/signup")
 
 
-  # blog routes
-  # get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
+  # shop
+  scope "/shop" do
+    resources :galleries, controller: "clients/galleries", as: "shop_galleries"
+    # resources :galleries do
+    #   resources :photos
+    # end
+  end
 
 
-  # resources :posts, path: "blog"
 
-  # resources :profiles
-  # resources :photos
 
-  # resources :galleries do
-  #   resources :photos
-  # end
 
+  
 
   # backend
   scope ":account_id" do
@@ -44,13 +44,54 @@ Rails.application.routes.draw do
   end
   get "/:account_id/galleries" => "galleries#index", as: "prism_root"
 
-  resources :accounts
 
-  devise_for :clients
+
+
+
+
+
+  # frontend
+
+  scope :constraints => lambda { |request| !Subdomain.match(request) } do
+    # portfolio
+    resources :galleries, path: "portfolio", as: "portfolio" do
+      resources :photos
+    end
+
+    # blog routes
+    resources :posts, path: "blog", as: "blog"
+    get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
+
+
+    as :client do
+      get "/login" => "devise/sessions#new"
+      get "/signin" => redirect("login")
+      delete "/logout" => "devise/sessions#destroy"
+    end
+
+    devise_for :clients
+
+    # --------------------------------------
+
+
+    # root
+    get "/" => redirect("/portfolio"), as: "frontend_root"
+  end
+
+
+
+
+
+
+
+
+  # users & accounts
+  resources :accounts
   devise_for :users,
-              #:controllers => { :invitations => 'users/invitations', :registrations => "users/registrations", :sessions => "users/sessions" },
-              :path => "",
-              :path_names => {:sign_in => 'login', :sign_up => "signup", :sign_out => 'logout'}
+             # :controllers => { :invitations => 'users/invitations', :registrations => "users/registrations", :sessions => "users/sessions" },
+             :path => "",
+             :path_names => {:sign_in => 'login', :sign_up => "signup", :sign_out => 'logout'}
+
   as :user do
     get "/login" => "devise/sessions#new", as: "user_login"
     get "/signin" => redirect("login")
@@ -59,60 +100,21 @@ Rails.application.routes.draw do
 
   get "/:account_id" => redirect("/")
 
+  # root 'galleries#index'
   root to: redirect("/signup")
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+end
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+# ----------------------------------------
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+# helper
+class Subdomain
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  def self.match(r)
+    r.subdomain == "www" || r.subdomain == ""
+  end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  def self.not_match(r)
+    r.subdomain != "www" || r.subdomain != ""
+  end
 end

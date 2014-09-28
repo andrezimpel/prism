@@ -4,6 +4,40 @@
 
 
 
+<% @posts.each do |post| %>
+  <% if post.gallery.present? %>
+    <div class="row">
+      <% post.gallery.photos.limit(3).each do |photo| %>
+        <div class="col-sm-4">
+          <a href="<%= url_for frontend_blog_post_path(day: post.day, month: post.month, year: post.year, title: post.permalink) %>">
+            <img class="img-responsive" src="<%= photo.image(:medium_s)%>">
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <br>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <h3><%= post.title %></h3>
+    </div>
+    <div class="col-sm-8">
+      <p class="lead">
+        <%= truncate(strip_tags((post.body)), length: 350) %>
+      </p>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+
+
+
+
+
+
+
 <ul class="media-list">
   <% @posts.each do |post| %>
     <li class="media">

@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% galleries.each do |gallery| %>
+      <%= render "clients/galleries/listitem", gallery: gallery %>
+    <% end %>
+  </tbody>
+</table>

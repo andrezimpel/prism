@@ -9,18 +9,10 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if devise_controller?# && controller_name != "invitations"
       "devise"
+    elsif @frontend
+      "frontend"
     else
       "application"
-    end
-  end
-
-
-  # store user login info in cookie for fast-login  & redirect after login
-  def after_sign_in_path_for(resource)
-    if resource.class.name.downcase == "client"
-      prism_root_path(current_client.account)
-    else
-      prism_root_path(current_user.account)
     end
   end
 
@@ -28,8 +20,17 @@ class ApplicationController < ActionController::Base
   # current account
   before_filter :set_current_account
   def set_current_account
-    # get account by scoped :account_id
+    @frontend = false
 
+    # get account by subdomain | frontend
+    if Account.where(subdomain: request.subdomain).empty? === false
+      @current_account = Account.where(subdomain: request.subdomain).first
+      @frontend = true
+      return @current_account
+    end
+
+
+    # get account by scoped :account_id | backend
     if params[:account_id]
       @current_account = Account.find(params[:account_id])
       return @current_account
@@ -43,15 +44,6 @@ class ApplicationController < ActionController::Base
     # dont' raise the exception if we are in the devise stuff
     if !devise_controller?
       raise ActionController::RoutingError.new('Account not found.')
-    end
-  end
-
-  # default url options
-  def default_url_options(options={})
-    if @current_account.present?
-      { :account_id => @current_account.id }
-    else
-      { :account_id => nil }
     end
   end
 end

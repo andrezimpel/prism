@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @current_account.title %> - <%= @title %></title>
+    <%= stylesheet_link_tag    'frontend/application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  </head>
+  <body>
+
+    <header>
+      <nav class="navbar navbar-priism navbar-fixed-top" role="navigation">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><%= @current_account.title %></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <%#= navigation_li_link "Home", "/home" %>
+              <%= navigation_li_link "Portfolio", portfolio_index_path %>
+              <%= navigation_li_link "Blog", blog_index_path %>
+
+              <% if current_client %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_client.fullname %></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <%= navigation_li_link "My Galleries", shop_galleries_path %>
+                    <li class="divider"></li>
+                    <li><%= link_to "Logout", destroy_client_session_path(), :method => :delete %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <%= navigation_li_link "Login", new_client_session_path %>
+              <% end %>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+
+    <div class="wrapper">
+      <div id="page" class="page">
+        <% if content_for("sidebar") %>
+          <div class="sidebar">
+            <%= yield "sidebar" %>
+          </div>
+        <% end %>
+        <div class="content">
+          <%= render 'layouts/alerts' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'layouts/shared/footer' %>
+  </body>
+</html>

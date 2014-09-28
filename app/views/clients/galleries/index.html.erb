@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h1><%= @title %></h1>
+</div>
+
+
+<% unless @galleries.empty? %>
+  <%= render "clients/galleries/list", galleries: @galleries %>
+<% else %>
+  <p id="no-photos-placeholder" class="lead">There are currently no galleries.</p>
+<% end %>
