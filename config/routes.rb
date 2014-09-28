@@ -4,6 +4,21 @@ Rails.application.routes.draw do
   get "/signup" => "accounts#new", as: "signup"
   get "/accounts/new" => redirect("/signup")
 
+
+  # shop
+  scope "/shop" do
+    resources :galleries, controller: "clients/galleries", as: "shop_galleries"
+    # resources :galleries do
+    #   resources :photos
+    # end
+  end
+
+
+
+
+
+  
+
   # backend
   scope ":account_id" do
     resources :accounts, controller: "backend/accounts"
@@ -31,11 +46,12 @@ Rails.application.routes.draw do
 
 
 
-  # --------------------------------------
 
 
 
-  # account frontend
+
+  # frontend
+
   scope :constraints => lambda { |request| !Subdomain.match(request) } do
     # portfolio
     resources :galleries, path: "portfolio", as: "portfolio" do
@@ -46,23 +62,36 @@ Rails.application.routes.draw do
     resources :posts, path: "blog", as: "blog"
     get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
 
+
+    as :client do
+      get "/login" => "devise/sessions#new"
+      get "/signin" => redirect("login")
+      delete "/logout" => "devise/sessions#destroy"
+    end
+
+    devise_for :clients
+
+    # --------------------------------------
+
+
     # root
     get "/" => redirect("/portfolio"), as: "frontend_root"
   end
 
 
 
-  # --------------------------------------
 
 
 
-  # users, clients & accounts
+
+
+  # users & accounts
   resources :accounts
-  devise_for :clients
   devise_for :users,
-              #:controllers => { :invitations => 'users/invitations', :registrations => "users/registrations", :sessions => "users/sessions" },
-              :path => "",
-              :path_names => {:sign_in => 'login', :sign_up => "signup", :sign_out => 'logout'}
+             # :controllers => { :invitations => 'users/invitations', :registrations => "users/registrations", :sessions => "users/sessions" },
+             :path => "",
+             :path_names => {:sign_in => 'login', :sign_up => "signup", :sign_out => 'logout'}
+
   as :user do
     get "/login" => "devise/sessions#new", as: "user_login"
     get "/signin" => redirect("login")
@@ -73,6 +102,7 @@ Rails.application.routes.draw do
 
   # root 'galleries#index'
   root to: redirect("/signup")
+
 end
 
 # ----------------------------------------
@@ -82,12 +112,6 @@ class Subdomain
 
   def self.match(r)
     r.subdomain == "www" || r.subdomain == ""
-    # account = Account.where(subdomain: r.subdomain)
-    # if !account.empty?
-    #   return true
-    # end
-    #
-    # return false
   end
 
   def self.not_match(r)

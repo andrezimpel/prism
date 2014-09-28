@@ -17,16 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  # store user login info in cookie for fast-login  & redirect after login
-  def after_sign_in_path_for(resource)
-    if resource.class.name.downcase == "client"
-      prism_root_path(current_client.account)
-    else
-      prism_root_path(current_user.account)
-    end
-  end
-
-
   # current account
   before_filter :set_current_account
   def set_current_account
