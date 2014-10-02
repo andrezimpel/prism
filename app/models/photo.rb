@@ -4,6 +4,11 @@ class Photo < ActiveRecord::Base
   belongs_to :gallery
   belongs_to :shopping_cart_item
 
+  has_many :photo_photo_sizes
+  has_many :photo_sizes, through: :photo_photo_sizes
+
+  has_many :shopping_cart_items, through: :photo_sizes
+
   # order
   default_scope { order('id DESC', 'updated_at DESC') }
 

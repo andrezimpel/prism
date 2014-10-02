@@ -28,10 +28,12 @@ class Clients::ShoppingCartItemsController < Clients::ClientsController
   def create
     # @shopping_cart_item = ShoppingCartItem.new(shopping_cart_item_params)
     photo = Photo.find(params["shopping_cart_item"]["photo_id"])
+    photo_size = PhotoSize.find(params["shopping_cart_item"]["photo_size_id"])
+    photo_photo_size = PhotoPhotoSize.where(photo_id: photo.id, photo_size_id: photo_size.id).first_or_create
     cart = ShoppingCart.where(:client_id => current_client.id).first_or_create
 
     respond_to do |format|
-      if cart.add(photo, 99.99)
+      if cart.add(photo_photo_size, 99.99, params["shopping_cart_item"]["quantity"])
         format.html { redirect_to request.referer, notice: 'Shopping cart item was successfully created.' }
         format.json { render :show, status: :created, location: @shopping_cart_item }
       else
@@ -76,6 +78,6 @@ class Clients::ShoppingCartItemsController < Clients::ClientsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopping_cart_item_params
-      params[:shopping_cart_item].permit(:photo_id, :cart_id, :size, :quantity)
+      params[:shopping_cart_item].permit(:photo_id, :cart_id, :quantity)
     end
 end

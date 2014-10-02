@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002203317) do
+ActiveRecord::Schema.define(version: 20141002210454) do
 
   create_table "accounts", force: true do |t|
     t.string   "title"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 20141002203317) do
 
   add_index "galleries", ["client_id"], name: "index_galleries_on_client_id", using: :btree
   add_index "galleries", ["portfolio"], name: "index_galleries_on_portfolio", using: :btree
+
+  create_table "photo_photo_sizes", force: true do |t|
+    t.integer  "photo_id"
+    t.integer  "photo_size_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photo_photo_sizes", ["photo_id"], name: "index_photo_photo_sizes_on_photo_id", using: :btree
+  add_index "photo_photo_sizes", ["photo_size_id"], name: "index_photo_photo_sizes_on_photo_size_id", using: :btree
 
   create_table "photo_sizes", force: true do |t|
     t.integer  "account_id"
@@ -132,6 +142,7 @@ ActiveRecord::Schema.define(version: 20141002203317) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "photo_size_id"
   end
 
   create_table "shopping_carts", force: true do |t|

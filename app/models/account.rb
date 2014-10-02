@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
 
+  # associations
   has_many :users
   has_many :clients
   has_many :galleries

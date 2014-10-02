@@ -22,40 +22,41 @@
     </tr>
   </thead>
   <tbody>
-    <% @shopping_cart_items.each do |item| %>
+    <% @shopping_cart_items.each do |cart_item| %>
       <tr>
         <td>
-          <img src="<%= Photo.where(id: item.item_id).first.image(:medium_s) %>" width="75">
+          <img src="<%= cart_item.item.photo.image(:medium_s) %>" width="75">
         </td>
         <td>
-          <%= simple_form_for(item) do |f| %>
+          <%= simple_form_for(cart_item) do |f| %>
             <%= f.error_notification %>
 
             <div class="form-group col-sm-3">
-              <%= f.input :quantity, label: false, input_html: { value: item.quantity, class: "form-control text-center" } %>
+              <%= f.input :quantity, label: false, input_html: { value: cart_item.quantity, class: "form-control text-center" } %>
             </div>
           <% end %>
         </td>
         <td>
-          <%= number_to_currency(item.price, locale: :de, :unit=>'€') %>
+          <%= number_to_currency(cart_item.price, locale: :de, :unit=>'€ ') %>
         </td>
         <td>
-
+          <%= cart_item.item.photo_size.title %>
         </td>
         <td>
-          <%= link_to 'Remove', shopping_cart_shopping_cart_item_path(item.owner_id, item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Remove', shopping_cart_shopping_cart_item_path(cart_item.owner_id, cart_item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
-  </tbody>
-  <tfoot>
     <tr>
-      <td colspan="3" class="text-right">
-        <%= number_to_currency(@cart.total, locale: :de, :unit=>'€') %>
+      <td></td>
+      <td></td>
+      <td>
+        <%= number_to_currency(@cart.total, locale: :de, :unit=>'€ ') %>
       </td>
-      <td colspan="2" class="text-right"></td>
+      <td></td>
+      <td></td>
     </tr>
-  </tfoot>
+  </tbody>
 </table>
 <hr>
 <div class="clearfix">

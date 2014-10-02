@@ -74,7 +74,9 @@ Rails.application.routes.draw do
       delete "/logout" => "devise/sessions#destroy"
     end
 
-    devise_for :clients
+    devise_for :clients,
+                :path => "",
+                :path_names => {:sign_in => 'login', :sign_up => "signup", :sign_out => 'logout'}
 
     # --------------------------------------
 
