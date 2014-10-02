@@ -12,6 +12,7 @@ class Clients::GalleriesController < Clients::ClientsController
   # GET /galleries/1.json
   def show
     @title = @gallery.title
+    @shopping_cart_item = ShoppingCartItem.new
   end
 
   private

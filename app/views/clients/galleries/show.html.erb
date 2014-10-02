@@ -4,13 +4,21 @@
       <div class="thumbnail">
         <img src="<%= photo.image(:medium_s) %>" alt="...">
         <div class="caption">
-          <select class="form-control">
-            <option value="1">10x13</option>
-            <option value="2">9x13</option>
-            <option value="3">9x15</option>
-          </select>
-          <br>
-          <a href="#" class="btn btn-primary btn-block" role="button">Add to cart</a>
+
+          <%= simple_form_for(@shopping_cart_item) do |f| %>
+            <%= f.error_notification %>
+
+            <%= f.hidden_field :photo_id, value: photo.id %>
+
+            <select class="form-control">
+              <option value="1">10x13</option>
+              <option value="2">9x13</option>
+              <option value="3">9x15</option>
+            </select>
+            <br>
+
+            <%= f.button :submit, "Add to cart", class: "btn-primary btn-block" %>
+          <% end %>
         </div>
       </div>
     </div>

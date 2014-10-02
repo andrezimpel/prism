@@ -7,7 +7,7 @@
   <% @photos.each do |photo| %>
     <div class="col-xs-6 col-md-3">
       <a href="#" class="thumbnail">
-        <img src="<%= photo.image %>">
+        <img src="<%= photo.image(:medium_s) %>">
       </a>
     </div>
   <% end %>

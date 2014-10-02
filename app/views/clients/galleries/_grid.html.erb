@@ -1,0 +1,12 @@
+<div class="row">
+  <% galleries.each do |gallery| %>
+    <div class="col-sm-6 col-md-3">
+      <a class="thumbnail text-center" href="<%= shop_gallery_path(gallery) %>">
+        <img src="<%= gallery.photos.first.image(:medium_s) %>">
+        <div class="caption">
+          <b><%= gallery.title %></b>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

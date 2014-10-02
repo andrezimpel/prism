@@ -2,6 +2,7 @@ class Photo < ActiveRecord::Base
 
   # associations
   belongs_to :gallery
+  belongs_to :shopping_cart_item
 
   # order
   default_scope { order('id DESC', 'updated_at DESC') }

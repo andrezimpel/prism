@@ -7,6 +7,7 @@ class Client < ActiveRecord::Base
   # associations
   belongs_to :account
   has_many :galleries
+  has_many :shopping_carts
 
   #attr_accessor :prism_uuid
 
@@ -59,5 +60,13 @@ class Client < ActiveRecord::Base
       return true
     end
     return false
+  end
+
+
+
+  # current shopping cart
+  # current cart
+  def current_shopping_cart
+    return shopping_carts.last
   end
 end

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   # shop
   scope "/shop" do
     resources :galleries, controller: "clients/galleries", as: "shop_galleries"
+    resources :shopping_carts, controller: "clients/shopping_carts", path: "shoppingcart" do
+      resources :shopping_cart_items, controller: "clients/shopping_cart_items", path: "items"
+    end
+    resources :shopping_cart_items, controller: "clients/shopping_cart_items", path: "items"
     # resources :galleries do
     #   resources :photos
     # end
@@ -17,7 +21,7 @@ Rails.application.routes.draw do
 
 
 
-  
+
 
   # backend
   scope ":account_id" do
