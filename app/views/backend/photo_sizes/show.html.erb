@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @photo_size.account_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @photo_size.title %>
+</p>
+
+<%= link_to 'Edit', edit_photo_size_path(@photo_size) %> |
+<%= link_to 'Back', photo_sizes_path %>

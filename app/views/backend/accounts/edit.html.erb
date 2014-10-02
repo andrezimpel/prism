@@ -3,3 +3,10 @@
 </div>
 
 <%= render 'form' %>
+
+
+<% content_for "sidebar" do %>
+  <%= render "backend/accounts/sidebar_nav" %>
+  <hr>
+  <%= link_to 'Cancel Account', accounts_path(@current_account), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link-danger" %>
+<% end %>

@@ -5,6 +5,7 @@ class Account < ActiveRecord::Base
   has_many :galleries
   has_many :photos, :through => :galleries
   has_many :posts
+  has_many :photo_sizes
 
   accepts_nested_attributes_for :users
 

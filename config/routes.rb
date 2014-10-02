@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get "/clients/:id/invite" => 'backend/clients#invite', controller: "backend/clients", as: "invite_client"
 
     resources :posts, path: "blog", controller: "backend/posts"
+    resources :photo_sizes, controller: "backend/photo_sizes", path: "photo-sizes"
 
     resources :galleries, controller: "backend/galleries" do
       resources :photos, controller: "backend/photos"

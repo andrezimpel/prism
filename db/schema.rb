@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928022832) do
+ActiveRecord::Schema.define(version: 20141002203317) do
 
   create_table "accounts", force: true do |t|
     t.string   "title"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(version: 20140928022832) do
 
   add_index "galleries", ["client_id"], name: "index_galleries_on_client_id", using: :btree
   add_index "galleries", ["portfolio"], name: "index_galleries_on_portfolio", using: :btree
+
+  create_table "photo_sizes", force: true do |t|
+    t.integer  "account_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.string   "title"
