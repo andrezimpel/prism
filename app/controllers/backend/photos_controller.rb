@@ -4,7 +4,11 @@ class Backend::PhotosController < Backend::BackendController
   # GET /photos
   # GET /photos.json
   def index
-    @gallery = Gallery.find(params[:gallery_id])
+    if params[:gallery_id].present?
+      @gallery = Gallery.find(params[:gallery_id])
+    else
+      @gallery = @current_account.galleries.first
+    end
     @photos = @gallery.photos #.page(params[:page]).per(24)
     @photo = Photo.new
   end
