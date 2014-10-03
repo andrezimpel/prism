@@ -60,7 +60,7 @@ gem 'jquery-turbolinks'
 gem 'ledermann-rails-settings'
 gem 'acts_as_shopping_cart', '~> 0.2.1'
 gem 'aasm'
-gem 'rmagick'
+# gem 'rmagick'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'
