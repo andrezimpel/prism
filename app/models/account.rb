@@ -14,4 +14,8 @@ class Account < ActiveRecord::Base
   # validations
   validates :title, presence: true, uniqueness: true
   validates :subdomain, presence: true, uniqueness: true
+
+  def owner
+    return User.find(self.user_id)
+  end
 end

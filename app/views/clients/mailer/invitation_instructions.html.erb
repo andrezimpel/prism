@@ -1,7 +1,17 @@
-<p>Hello <%= @resource.fullname %>,</p>
+<h3>Hello <%= @resource.fullname %>,</h3>
 
-<p><%= I18n.t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p>
+<p>
+  Welcome to <%= link_to "#{@resource.account.title}", frontend_root_url(subdomain: @resource.account.subdomain, account_id: nil), target: "_blank" %>
+</p>
 
+<p>
+  <%= @resource.account.owner.fullname %> has invited you. You can accept it through the link below.
+</p>
+<br>
 <p><%= link_to I18n.t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token, subdomain: @resource.account.subdomain) %></p>
+<br>
+<p>
+  Your sign in id is: <strong><%= @resource.prism_uuid %></strong>. You will need it to sign in to <%= @resource.account.title %>
+</p>
 
 <p><%= I18n.t("devise.mailer.invitation_instructions.ignore").html_safe %></p>

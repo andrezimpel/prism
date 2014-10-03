@@ -25,13 +25,12 @@
           <% if client.status == "uninvited" %>
             <%= link_to "Invite", invite_client_path(client) %>
           <% else %>
-            <%= link_to "Invite", invite_client_path(client) %>
             <span class="label label-info"><%= client.status %></span>
           <% end %>
         </td>
         <td><%#= link_to 'Show', client %></td>
         <td><%#= link_to 'Edit', edit_client_path(client) %></td>
-        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
