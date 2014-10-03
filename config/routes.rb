@@ -85,12 +85,6 @@ Rails.application.routes.draw do
   end
 
 
-
-
-
-
-
-
   # users & accounts
   resources :accounts
   devise_for :users,
