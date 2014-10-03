@@ -24,6 +24,7 @@ class AccountsController < ApplicationController
         # sign in user
         user = @account.users.first
         sign_in(:user, user)
+        @account.update_attributes(user_id: user.id)
 
         format.html { redirect_to prism_root_path(@account), notice: 'Welcome to Satiisfy!' }
         format.json { render action: 'show', status: :created, location: @account }
@@ -42,7 +43,7 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:title, :subdomain, users_attributes: [:email, :password, :password_confirmation, :firstname, :lastname])
+      params.require(:account).permit(:title, :subdomain, :user_id, users_attributes: [:email, :password, :password_confirmation, :firstname, :lastname])
     end
 
     def user_params
