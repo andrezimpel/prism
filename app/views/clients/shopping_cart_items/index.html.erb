@@ -61,5 +61,5 @@
 <hr>
 <div class="clearfix">
   <%= link_to 'Delete Cart', shopping_cart_path(@cart), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
-  <a class="btn btn-primary pull-right">Checkout</a>
+  <%= link_to "Checkout", new_shop_order_path, class: "btn btn-primary pull-right" %>
 </div>

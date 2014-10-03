@@ -7,7 +7,12 @@ class Client < ActiveRecord::Base
   # associations
   belongs_to :account
   has_many :galleries
-  has_many :shopping_carts
+  has_many :shopping_carts, dependent: :destroy
+  has_many :orders, dependent: :destroy
+
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :email, presence: true
 
   #attr_accessor :prism_uuid
 

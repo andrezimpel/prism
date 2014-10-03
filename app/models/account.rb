@@ -1,12 +1,13 @@
 class Account < ActiveRecord::Base
 
   # associations
-  has_many :users
-  has_many :clients
-  has_many :galleries
+  has_many :users, dependent: :destroy
+  has_many :clients, dependent: :destroy
+  has_many :galleries, dependent: :destroy
   has_many :photos, :through => :galleries
-  has_many :posts
-  has_many :photo_sizes
+  has_many :posts, dependent: :destroy
+  has_many :photo_sizes, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   accepts_nested_attributes_for :users
 

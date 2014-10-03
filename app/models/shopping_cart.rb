@@ -2,6 +2,9 @@ class ShoppingCart < ActiveRecord::Base
   acts_as_shopping_cart
 
   belongs_to :client
+  has_one :order
+
+  scope :open, lambda { where(['ordered IS NULL']) }
 
   def taxes
     0.to_f

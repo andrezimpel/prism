@@ -20,7 +20,7 @@ class Clients::ShoppingCartsController < Clients::ClientsController
 
   # GET /shopping_carts/new
   def new
-    @shopping_cart = ShoppingCart.where(:client_id => current_client.id).first_or_create
+    @shopping_cart = ShoppingCart.where(:client_id => current_client.id, ordered: nil).first_or_create
   end
 
   # GET /shopping_carts/1/edit

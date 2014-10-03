@@ -13,7 +13,7 @@ class Photo < ActiveRecord::Base
   default_scope { order('id DESC', 'updated_at DESC') }
 
   # paperclip
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>", :medium_s => "300x300#" }, :default_url => "/assets/missing.jpg"
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>", :medium_s => "300x300#", :thumb_s => "100x100#" }, :default_url => "/assets/missing.jpg"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   # get filename or title

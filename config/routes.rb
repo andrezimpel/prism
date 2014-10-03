@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :order_transactions
 
   # signup
   get "/signup" => "accounts#new", as: "signup"
@@ -12,9 +13,7 @@ Rails.application.routes.draw do
       resources :shopping_cart_items, controller: "clients/shopping_cart_items", path: "items"
     end
     resources :shopping_cart_items, controller: "clients/shopping_cart_items", path: "items"
-    # resources :galleries do
-    #   resources :photos
-    # end
+    resources :orders, controller: "clients/orders", as: "shop_orders"
   end
 
 

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @order.account_id %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @order.client_id %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @order.state %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @order.amount %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address_id %>
+</p>
+
+<p>
+  <strong>Shopping cart:</strong>
+  <%= @order.shopping_cart_id %>
+</p>
+
+<p>
+  <strong>Ip address:</strong>
+  <%= @order.ip_address %>
+</p>
+
+<p>
+  <strong>Card expires on:</strong>
+  <%= @order.card_expires_on %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

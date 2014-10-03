@@ -8,7 +8,7 @@ class Gallery < ActiveRecord::Base
   scope :portfolio, lambda { where(['portfolio IS NOT NULL']) }
 
   # associations
-  has_many :photos
+  has_many :photos, dependent: :destroy
   belongs_to :client
   belongs_to :post
   belongs_to :account
