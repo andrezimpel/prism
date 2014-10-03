@@ -37,3 +37,9 @@ $(document).ready(function(){
 		}
 	});
 });
+
+// function closeEditorWarning(){
+//   return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
+// }
+//
+// window.onbeforeunload = closeEditorWarning
