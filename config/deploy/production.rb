@@ -1,7 +1,5 @@
 set :stage, :production
 
-set :deploy_to, '/var/www/html'
-
 set :rvm_custom_path, '/usr/local/rvm/'
 
 # Replace 127.0.0.1 with your server's IP address!

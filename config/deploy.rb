@@ -4,6 +4,7 @@ set :repo_url, 'git@github.com:andrezimpel/prism.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # set :deploy_to, '/var/www/my_app'
+set :deploy_to, '/var/www/html' # production
 # set :scm, :git
 
 set :rvm_ruby_version, '2.0.0-p353'
@@ -35,8 +36,21 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
+      run "cd #{current_path} && bundle"
+      run "cd #{current_path} && rake db:migrate"
       execute :touch, release_path.join('tmp/restart.txt')
     end
+  end
+
+  task :symlink_shared_folders, :roles => :app do
+  	run <<-CMD
+  	 cd #{current_path};
+  	 ln -s #{deploy_to}/shared/restricted;
+  	 ln -s #{deploy_to}/shared/solr;
+  	 ln -s #{deploy_to}/shared/users/ #{current_path}/public/users;
+  	 ln -s #{deploy_to}/shared/account_logos/ #{current_path}/public/account_logos;
+  	 ln -s #{deploy_to}/shared/pool_logos/ #{current_path}/public/pool_logos;
+  	CMD
   end
 
   # desc 'stop solr'
@@ -55,4 +69,5 @@ namespace :deploy do
   # end
 
   after :finishing, 'deploy:cleanup'
+  after "deploy:create_symlink", "deploy:symlink_shared_folders"
 end
