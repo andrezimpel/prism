@@ -31,7 +31,7 @@ class Backend::PhotosController < Backend::BackendController
   # POST /photos
   # POST /photos.json
   def create
-    @photo = Photo.create(photo_params)
+    @photo = Photo.create!(photo_params)
     # @photo = Photo.new(photo_params)
     #
     # respond_to do |format|
