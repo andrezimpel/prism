@@ -6,7 +6,7 @@
 <div class="row">
   <% @photos.each do |photo| %>
     <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
+      <a href="<%= photo.image %>" class="thumbnail" data-gallery title="<%= photo.fullname %> #<%= photo.id %>">
         <img src="<%= photo.image(:medium_s) %>">
       </a>
     </div>

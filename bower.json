@@ -16,6 +16,7 @@
     "typeahead.js": "latest",
     "handlebars": "latest",
     "dropzone": "latest",
-    "animate.css": "latest"
+    "animate.css": "latest",
+    "blueimp-bootstrap-image-gallery": "latest"
   }
 }

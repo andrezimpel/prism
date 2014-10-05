@@ -41,5 +41,12 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 
+//= require blueimp-gallery/js/blueimp-gallery.js
+//= require blueimp-gallery/js/blueimp-helper.js
+//= require blueimp-gallery/js/blueimp-gallery-indicator.js
+//= require blueimp-gallery/js/blueimp-gallery-fullscreen.js
+//= require blueimp-gallery/js/jquery.blueimp-gallery.js
+//= require blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.js
+
 //= require posts
 //= require photos
