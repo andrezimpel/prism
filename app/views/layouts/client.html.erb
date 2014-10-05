@@ -25,13 +25,24 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <%= navigation_li_link "My Galleries", shop_galleries_path %>
+              <%= navigation_li_link "My Orders", shop_orders_path %>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
               <%#= navigation_li_link "Home", "/home" %>
-              <%= navigation_li_link "Portfolio", portfolio_index_path %>
               <%#= navigation_li_link "Blog", blog_index_path %>
 
               <% if current_client %>
-                <%= navigation_li_link current_client.fullname, shop_galleries_path %>
+                <%= navigation_li_link "Cart (#{current_client.current_shopping_cart.items.count })", shopping_cart_shopping_cart_items_path(current_client.current_shopping_cart) if current_client.shopping_carts.open.present? %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_client.fullname %></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <%= navigation_li_link "Edit Account", shop_orders_path %>
+                    <li class="divider"></li>
+                    <li><%= link_to "Logout", destroy_client_session_path(), :method => :delete %></li>
+                  </ul>
+                </li>
               <% else %>
                 <%= navigation_li_link "Login", new_client_session_path %>
               <% end %>

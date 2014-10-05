@@ -1,20 +1,7 @@
 <table class="table table-striped table-condensed">
   <tbody>
     <% items.each do |cart_item| %>
-      <tr>
-        <td>
-          <img src="<%= cart_item.item.photo.image(:thumb_s) %>" width="35">
-        </td>
-        <td style="vertical-align: middle;">
-          <%= number_to_currency(cart_item.price, locale: :de, :unit=>'€ ') %>
-        </td>
-        <td style="vertical-align: middle;">
-          <%= cart_item.quantity %>x
-        </td>
-        <td style="vertical-align: middle;">
-          <%= cart_item.item.photo_size.title %>
-        </td>
-      </tr>
+      <%= render "clients/shopping_cart_items/list_small_tr", item: cart_item %>
     <% end %>
   </tbody>
 </table>

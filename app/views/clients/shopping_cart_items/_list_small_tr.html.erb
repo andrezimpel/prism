@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <img src="<%= item.item.photo.image(:thumb_s) %>" width="35">
+  </td>
+  <td style="vertical-align: middle;">
+    <%= number_to_currency(item.price, locale: :de, :unit=>'€ ') %>
+  </td>
+  <td style="vertical-align: middle;">
+    <%= item.quantity %>x
+  </td>
+  <td style="vertical-align: middle;">
+    <%= item.item.photo_size.title %>
+  </td>
+</tr>

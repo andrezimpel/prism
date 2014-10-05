@@ -4,13 +4,16 @@ class Clients::OrdersController < Clients::ClientsController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = current_client.orders
+    @title = "Orders"
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    redirect_to shop_orders_path
+    @cart = @order.shopping_cart
+    @order_items = @cart.items
+    @title = "Order ##{@order.id}"
   end
 
   # GET /orders/new
