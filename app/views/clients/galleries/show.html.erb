@@ -2,7 +2,9 @@
   <% @gallery.photos.each do |photo| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <img src="<%= photo.image(:medium_s) %>" alt="...">
+        <a href="<%= photo.image %>" data-gallery title="<%= photo.fullname %> #<%= photo.id %>">
+          <img src="<%= photo.image(:medium_s) %>" alt="<%= photo.fullname %> #<%= photo.id %>" class="img-responsive">
+        </a>
         <div class="caption">
           <%= simple_form_for(@shopping_cart_item) do |f| %>
             <%= f.error_notification %>
