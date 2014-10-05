@@ -1,0 +1,24 @@
+.blueimp-gallery {
+  background: white;
+  background: rgba(white, 0.95);
+
+  > .slides > .slide > .slide-content {
+    max-height: 80%;
+    max-width: 80%;
+  }
+
+  > .indicator > li {
+    background-size: 150%;
+    border-radius: 0;
+    border: 0;
+    box-shadow: 0 0 5px white;
+    height: 40px;
+    opacity: 0.4;
+    width: 40px;
+  }
+
+  > .close, > .title {
+    color: $text-color;
+    text-shadow: 0 0 5px white;
+  }
+}
