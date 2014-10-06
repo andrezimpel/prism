@@ -1,9 +1,9 @@
 // import shared stuff
 @import "_base";
 
-@import "../blueimp-gallery/css/blueimp-gallery.css";
-@import "../blueimp-gallery/css/blueimp-gallery-indicator.css";
-@import "../blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css";
+@import "blueimp-gallery/css/blueimp-gallery.scss";
+@import "blueimp-gallery/css/blueimp-gallery-indicator.scss";
+@import "blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.scss";
 
 // vendor
 @import "redactor";
