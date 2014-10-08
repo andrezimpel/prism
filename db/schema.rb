@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003071928) do
+ActiveRecord::Schema.define(version: 20141008192042) do
 
   create_table "accounts", force: true do |t|
     t.string   "title"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 20141003071928) do
   end
 
   add_index "accounts", ["subdomain"], name: "index_accounts_on_subdomain", unique: true, using: :btree
+
+  create_table "addresses", force: true do |t|
+    t.integer  "account_id"
+    t.integer  "client_id"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "street"
+    t.integer  "number"
+    t.integer  "zipcode"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "phone"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clients", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -107,6 +124,7 @@ ActiveRecord::Schema.define(version: 20141003071928) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price"
   end
 
   create_table "photos", force: true do |t|

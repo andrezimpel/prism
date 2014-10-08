@@ -1,4 +1,4 @@
-<%= simple_form_for(@order, url: shop_orders_path, html: { class: "form-horizontal" }) do |f| %>
+<%= simple_form_for(@order, url: shop_orders_path, html: { class: "form-horizontal" }, wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
 
   <%= f.hidden_field :account_id, value: @current_account.id %>
@@ -7,21 +7,31 @@
   <%= f.hidden_field :shopping_cart_id, value: @cart.id %>
 
   <div class="form-inputs">
+
+    <%= f.simple_fields_for :users do |a| %>
+      <%= a.hidden_field :account_id, value: @current_account.id %>
+      <%= a.hidden_field :client_id, value: current_client.id %>
+      <%= a.hidden_field :order_id, value: @order %>
+      <%= a.input :firstname, input_html: { value: current_client.firstname } %>
+      <%= a.input :lastname, input_html: { value: current_client.lastname } %>
+      <%= a.input :street %>
+      <%= a.input :number %>
+      <%= a.input :zipcode %>
+      <%= a.input :city %>
+      <%= a.input :state %>
+      <%= a.input :country, selected: "DE" %>
+      <%= a.input :phone %>
+    <% end %>
+
     <div class="form-group">
-      <label class="col-sm-2 control-label">Name</label>
-      <div class="col-sm-10">
-        <p class="form-control-static"><%= @client.fullname %></p>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Total Amount</label>
-      <div class="col-sm-10">
+      <label class="col-sm-3 control-label">Total Amount</label>
+      <div class="col-sm-9">
         <p class="form-control-static"><%= number_to_currency(@cart.total, locale: :de, :unit=>'€ ') %></p>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Items</label>
-      <div class="col-sm-10">
+      <label class="col-sm-3 control-label">Items</label>
+      <div class="col-sm-9">
         <p class="form-control-static"><%= @cart.items.count %></p>
         <br>
         <%= render "clients/shopping_cart_items/list_small", items: @cart.items %>

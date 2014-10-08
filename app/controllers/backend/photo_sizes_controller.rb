@@ -70,6 +70,6 @@ class Backend::PhotoSizesController < Backend::BackendController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_size_params
-      params.require(:photo_size).permit(:account_id, :title)
+      params.require(:photo_size).permit(:account_id, :title, :price)
     end
 end

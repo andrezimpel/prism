@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Price</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @photo_sizes.each do |photo_size| %>
       <tr>
         <td><%= photo_size.title %></td>
+        <td><%= number_to_currency(photo_size.price, locale: :de, :unit=>'€ ') %></td>
         <td class="text-right"><%= link_to 'Edit', edit_photo_size_path(photo_size) %></td>
         <td class="text-right"><%= link_to 'Destroy', photo_size, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

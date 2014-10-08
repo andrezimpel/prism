@@ -4,6 +4,10 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
+    <%= f.input :price, input_html: { value: @photo_size.price } %>
+    <span class="help-block">
+      You need to enter a dot seperated value like 5.99 for 5,99€.
+    </span>
   </div>
 
   <div class="form-actions">

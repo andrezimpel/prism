@@ -41,6 +41,7 @@ gem 'spring',        group: :development
 
 gem 'bower'
 gem 'simple_form', github: 'plataformatec/simple_form', :tag => 'v3.1.0.rc2'
+gem 'country_select'
 gem 'redcarpet'
 gem 'impressionist'
 gem 'devise'
@@ -60,7 +61,11 @@ gem 'jquery-turbolinks'
 gem 'ledermann-rails-settings'
 gem 'acts_as_shopping_cart', '~> 0.2.1'
 gem 'aasm'
-# gem 'rmagick'
+gem 'rmagick'
+gem 'activemerchant'
+gem 'money'
+gem 'money-rails'
+gem 'acts_as_decimal'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'

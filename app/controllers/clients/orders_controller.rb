@@ -21,6 +21,8 @@ class Clients::OrdersController < Clients::ClientsController
     @order = Order.new
     @client = current_client
     @cart = @client.current_shopping_cart
+    @address = @order.addresses.build
+    @title = "New Order"
   end
 
   # GET /orders/1/edit

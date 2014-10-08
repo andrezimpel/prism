@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   belongs_to :account
   belongs_to :client
   belongs_to :shopping_cart
+  has_many :addresses
 
 
   # assam

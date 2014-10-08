@@ -33,7 +33,7 @@ class Clients::ShoppingCartItemsController < Clients::ClientsController
     cart = ShoppingCart.where(:client_id => current_client.id, ordered: nil).first_or_create
 
     respond_to do |format|
-      if cart.add(photo_photo_size, 99.99, params["shopping_cart_item"]["quantity"])
+      if cart.add(photo_photo_size, photo_size.price, params["shopping_cart_item"]["quantity"])
         format.html { redirect_to request.referer, notice: 'Shopping cart item was successfully created.' }
         format.json { render :show, status: :created, location: @shopping_cart_item }
       else

@@ -9,6 +9,7 @@ class Client < ActiveRecord::Base
   has_many :galleries
   has_many :shopping_carts, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :addresses
 
   validates :firstname, presence: true
   validates :lastname, presence: true

@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :photo_sizes, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :addresses
 
   accepts_nested_attributes_for :users
 
