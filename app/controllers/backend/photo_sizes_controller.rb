@@ -4,7 +4,7 @@ class Backend::PhotoSizesController < Backend::BackendController
   # GET /photo_sizes
   # GET /photo_sizes.json
   def index
-    @photo_sizes = PhotoSize.all
+    @photo_sizes = @current_account.photo_sizes
   end
 
   # GET /photo_sizes/1
