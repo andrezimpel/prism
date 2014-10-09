@@ -5,8 +5,9 @@ class Order < ActiveRecord::Base
   belongs_to :account
   belongs_to :client
   belongs_to :shopping_cart
-  has_many :addresses
+  has_many :addresses, autosave: true
 
+  accepts_nested_attributes_for :addresses
 
   # assam
   aasm :column => 'state' do # default column: aasm_state

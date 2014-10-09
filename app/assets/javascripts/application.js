@@ -50,3 +50,4 @@
 
 //= require posts
 //= require photos
+//= require addresses

@@ -1,0 +1,16 @@
+<b><%= address.client.fullname %></b><br>
+<%= Phony.format(address.phone, :format => :+) %><br><br>
+<%= address.street %><br>
+<%= address.zipcode %> <%= address.city %><br>
+<%= "#{address.state}" if address.country %><%= ", #{ISO3166::Country[address.country].name}" if address.state %><br>
+
+<div id="autofilled-address" class="hidden">
+  <% address.attributes.each do |att| %>
+    <% if att[0] == "phone" %>
+    <div data-key="<%= att[0] %>" data-value="<%= Phony.format(att[1], :format => :+) %>" data-target="order_addresses_attributes_0_<%= att[0] %>"></div>
+    <% else %>
+      <div data-key="<%= att[0] %>" data-value="<%= att[1] %>" data-target="order_addresses_attributes_0_<%= att[0] %>"></div>
+    <% end %>
+
+  <% end %>
+</div>

@@ -11,18 +11,21 @@ class Clients::OrdersController < Clients::ClientsController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @title = "Order ##{@order.id}"
+
     @cart = @order.shopping_cart
     @order_items = @cart.items
-    @title = "Order ##{@order.id}"
+    @address = @order.addresses.last
   end
 
   # GET /orders/new
   def new
+    @title = "New Order"
+
     @order = Order.new
     @client = current_client
     @cart = @client.current_shopping_cart
-    @address = @order.addresses.build
-    @title = "New Order"
+    @order.addresses.build
   end
 
   # GET /orders/1/edit
@@ -34,6 +37,8 @@ class Clients::OrdersController < Clients::ClientsController
   def create
     @order = Order.new(order_params)
     @cart = ShoppingCart.find(params[:order][:shopping_cart_id])
+    @title = "New Order"
+    # @order.addresses.build(addresses_params)
 
     respond_to do |format|
       if @order.save
@@ -81,6 +86,10 @@ class Clients::OrdersController < Clients::ClientsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:account_id, :client_id, :state, :amount, :address_id, :shopping_cart_id, :ip_address, :card_expires_on)
+      params.require(:order).permit(:account_id, :client_id, :state, :amount, :address_id, :shopping_cart_id, :ip_address, :card_expires_on, addresses_attributes: [:account_id, :client_id, :firstname, :lastname, :street, :number, :zipcode, :city, :state, :country, :phone, :order_id])
+    end
+
+    def addresses_params
+      params[:order].require(:addresses).permit(:account_id, :client_id, :firstname, :lastname, :street, :number, :zipcode, :city, :state, :country, :phone, :order_id)
     end
 end

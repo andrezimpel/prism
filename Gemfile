@@ -66,6 +66,7 @@ gem 'activemerchant'
 gem 'money'
 gem 'money-rails'
 gem 'acts_as_decimal'
+gem 'phony_rails'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'

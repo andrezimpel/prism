@@ -75,4 +75,8 @@ class Client < ActiveRecord::Base
   def current_shopping_cart
     return shopping_carts.last
   end
+
+  def last_address
+    self.addresses.last
+  end
 end
