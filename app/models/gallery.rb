@@ -5,7 +5,7 @@ class Gallery < ActiveRecord::Base
 
   # filter
   scope :has_no_client, lambda { where(['client_id IS NULL']) }
-  scope :portfolio, lambda { where(['portfolio IS NOT NULL']) }
+  scope :portfolio, lambda { where(['portfolio = 1']) }
 
   # associations
   has_many :photos, dependent: :destroy
