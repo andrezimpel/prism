@@ -42,14 +42,16 @@
 
 
 <% content_for "sidebar" do %>
-  <div class="sidebar-note">
-    <h2>Address</h2>
-    <p>
-      User you last entered address:
-    </p>
-    <p>
-      <%= render "addresses/sidebar", address: current_client.last_address %>
-    </p>
-    <a id="autofill-address" class="btn btn-primary btn-block" href="#">Use Address</a>
-  </div>
+  <% if current_client.last_address %>
+    <div class="sidebar-note">
+      <h2>Address</h2>
+      <p>
+        User you last entered address:
+      </p>
+      <p>
+        <%= render "addresses/sidebar", address: current_client.last_address %>
+      </p>
+      <a id="autofill-address" class="btn btn-primary btn-block" href="#">Use Address</a>
+    </div>
+  <% end%>
 <% end %>

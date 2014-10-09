@@ -77,6 +77,7 @@ class Client < ActiveRecord::Base
   end
 
   def last_address
-    self.addresses.last
+    return self.addresses.last if self.addresses.last != nil
+    return false
   end
 end
