@@ -40,7 +40,7 @@
           <%= number_to_currency(cart_item.price, locale: :de, :unit=>'€ ') %>
         </td>
         <td>
-          <%= cart_item.item.photo_size.title %>
+          <%= cart_item.item.photo_size.title if cart_item.item.photo_size.title != nil %>
         </td>
         <td>
           <%= link_to 'Remove', shopping_cart_shopping_cart_item_path(cart_item.owner_id, cart_item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
