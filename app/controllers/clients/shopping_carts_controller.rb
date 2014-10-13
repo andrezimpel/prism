@@ -1,5 +1,5 @@
 class Clients::ShoppingCartsController < Clients::ClientsController
-  before_action :set_shopping_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_shopping_cart, only: [:show, :edit, :update, :destroy, :clear]
 
   # GET /shopping_carts
   # GET /shopping_carts.json
@@ -65,6 +65,11 @@ class Clients::ShoppingCartsController < Clients::ClientsController
       format.html { redirect_to "/", notice: 'Shopping cart was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def clear
+    @shopping_cart.delete
+    redirect_to shop_galleries_path
   end
 
   private

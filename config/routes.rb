@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :shopping_cart_items, controller: "clients/shopping_cart_items", path: "items"
     resources :orders, controller: "clients/orders", as: "shop_orders"
+    get "/shoppingcart/:id/clear" => "clients/shopping_carts#clear", as: "clear_shoppping_cart"
   end
 
 
