@@ -82,7 +82,7 @@ Rails.application.routes.draw do
 
     # root
     # get "/" => redirect("/portfolio"), as: "frontend_root"
-    get "/welcome" => 'comingsoon/frontend#index'
+    get "/welcome" => 'comingsoon/frontend#index', as: "frontend_root"
     get '*path' => redirect("/welcome")
     get '/' => redirect("/welcome")
   end
