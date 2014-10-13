@@ -1,0 +1,19 @@
+<% if !current_client %>
+  <% content_for "headline" do %>
+    <h3><%= @current_account.title %></h3>
+  <% end %>
+  <p class="lead">
+    Welcome to <span class="highlight"><%= @current_account.title %></span>. Please sign in to view your galleries and orders.
+  </p>
+  <br>
+  <%= link_to "Sign in", new_client_session_path, class: "btn btn-primary btn-lg" %>
+<% else %>
+  <% content_for "headline" do %>
+    <h3><%= @current_account.title %></h3>
+  <% end %>
+  <p class="lead">
+    Welcome back, <span class="highlight"><%= current_client.firstname %></span>. Click the button below to view your galleries and orders.
+  </p>
+  <br>
+  <%= link_to "My Galleries", shop_galleries_path, class: "btn btn-primary btn-lg" %>
+<% end %>

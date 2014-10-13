@@ -22,5 +22,7 @@ $(document).ready(function(){
 
     $(this).toggleClass("disabled");
     $(this).html("Copied Address");
+
+    return false;
   });
 });

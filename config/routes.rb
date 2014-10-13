@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "/accounts/new" => redirect("/signup")
 
 
+
+
+
   # shop
   scope "/shop" do
     resources :galleries, controller: "clients/galleries", as: "shop_galleries"
@@ -17,8 +20,6 @@ Rails.application.routes.draw do
     resources :shopping_cart_items, controller: "clients/shopping_cart_items", path: "items"
     resources :orders, controller: "clients/orders", as: "shop_orders"
   end
-
-
 
 
 
@@ -54,24 +55,21 @@ Rails.application.routes.draw do
 
 
 
-
-
   # frontend
-
   scope :constraints => lambda { |request| !Subdomain.match(request) } do
     # portfolio
-    resources :galleries, path: "portfolio", as: "portfolio" do
-      resources :photos
-    end
+    # resources :galleries, path: "portfolio", as: "portfolio" do
+      # resources :photos
+    # end
 
     # blog routes
-    resources :posts, path: "blog", as: "blog"
-    get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
+    # resources :posts, path: "blog", as: "blog"
+    # get "/blog/:year/:month/:day/:title" => "posts#show", as: "frontend_blog_post"
 
 
     as :client do
-      get "/login" => "devise/sessions#new"
-      get "/signin" => redirect("login")
+      get "/signin" => "devise/sessions#new"
+      get "/login" => redirect("signin")
       delete "/logout" => "devise/sessions#destroy"
     end
 
@@ -83,8 +81,14 @@ Rails.application.routes.draw do
 
 
     # root
-    get "/" => redirect("/portfolio"), as: "frontend_root"
+    # get "/" => redirect("/portfolio"), as: "frontend_root"
+    get "/welcome" => 'comingsoon/frontend#index'
+    get '*path' => redirect("/welcome")
+    get '/' => redirect("/welcome")
   end
+
+
+
 
 
   # users & accounts
@@ -101,6 +105,10 @@ Rails.application.routes.draw do
   end
 
   get "/:account_id" => redirect("/")
+
+
+
+
 
   # root 'galleries#index'
   root to: redirect("/signup")
