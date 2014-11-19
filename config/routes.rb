@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     end
     resources :photos, controller: "backend/photos"
 
+    resources :orders, controller: "backend/orders"
+
     # invitation
     devise_scope :user do
       get "team/invite", to: "users/invitations#new", :as => "new_account_user_invitation"

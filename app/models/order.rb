@@ -1,6 +1,9 @@
 class Order < ActiveRecord::Base
   include AASM
 
+  # order
+  default_scope { order('state DESC', 'updated_at DESC') }
+
   # associations
   belongs_to :account
   belongs_to :client
@@ -21,7 +24,7 @@ class Order < ActiveRecord::Base
     event :open_up do
       transitions :from => :incomplete, :to => :open
     end
-    event :purchase do
+    event :pay do
       transitions :from => :open, :to => :paid
     end
     event :finish do

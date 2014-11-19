@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Orders</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>
+          <%= link_to "Order ##{order.id}", order_path(order) %>&nbsp;&nbsp;&nbsp;<span class="label label-default"><%= order.state %></span>
+        </td>
+        <td>
+          <%=order.shopping_cart.items.count %>
+        </td>
+        <td><%= number_to_currency((order.amount / 100), locale: :de, :unit=>'€ ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% content_for "sidebar" do %>
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active"><a href="#">All</a></li>
+    <li><a href="#">Open</a></li>
+    <li><a href="#">Complete</a></li>
+  </ul>
+<% end %>
